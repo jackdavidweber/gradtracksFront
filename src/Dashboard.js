@@ -23,6 +23,7 @@ import Filters from './Filters';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import FiltersLift from './FiltersLift'
 
 function Copyright() {
   return (
