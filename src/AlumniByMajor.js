@@ -25,7 +25,6 @@ const majorData = [
     ['German Studies', 720]
 ];
 
-
 class AlumniByMajor extends React.Component {
     render() {
         return (
