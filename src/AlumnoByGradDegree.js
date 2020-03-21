@@ -2,7 +2,6 @@ import * as React from "react";
 import { Chart } from "react-google-charts";
 
 // example data
-
 // alumni by degree can only take 5 bars (degree types) at a time
 // const degreeData = [
 //     ["degree", "phd", "MA", "MS", "MFA", "MBA", "JD", "MD", "DDS"],
