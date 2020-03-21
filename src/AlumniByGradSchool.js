@@ -2,36 +2,31 @@ import * as React from "react";
 import { Chart } from "react-google-charts";
 
 // Example data to use for input:
-// const majorData = [
-//     ["Major", "Count"],
-//     ["Africana Studies", 2937],
-//     ["American Studies", 4885],
-//     ["Anthropology", 4310],
-//     ['Art History',	2400],
-//     ['Asian American Studies', 4698],
-//     ['Asian Studies', 915],
-//     ['Biology', 902],
-//     ['Chemistry', 757],
-//     ['Chinese',	2691],
-//     ['Classics', 2627],
-//     ['Cognitive Science', 4877],
-//     ['Computer Science', 1289],
-//     ['Dance', 2942],
-//     ['Economics', 1886],
-//     ['English',	920],
-//     ['French', 3059],
-//     ['G & W Studies', 703],
-//     ['Geology',	2651],
-//     ['German Studies', 720]
+// const gradSchoolData = [
+//     ["Grad School", "Count"],
+//     ["Stanford University",	584],
+//     ["UCLA", 670],
+//     ["UC Berkeley",	675],
+//     ["Carnegie Mellon University",	498],
+//     ["MIT",	851],
+//     ["Harvard University",	86],
+//     ["Princeton University", 906],
+//     ["Columbia University",	643],
+//     ["Claremont Graduate University",	532],
+//     ["Yale University", 104],
+//     ["Rice University",	903],
+//     ["University of Chicago", 189],
+//     ["University of Pennsylvania", 426]
 // ];
 
 
 // To pass input into class, pass input as props.graphData
-// example on how to do this in AlumniByGradSchool class
-class AlumniByMajor extends React.Component {
+// As an example:
+// ReactDOM.render(<AlumniByGradSchool graphData={gradSchoolData} />, document.getElementById('root'));
+class AlumniByGradSchool extends React.Component {
     render() {
         return (
-            <div className="AlumniByMajor">
+            <div className="AlumniByGradSchool">
                 <Chart
                     width={'1000px'}
                     height={'400px'}
@@ -41,25 +36,25 @@ class AlumniByMajor extends React.Component {
                     options={{
                         // Material design options
                         chart: {
-                            title: 'Alumni by Major',
+                            title: 'Alumni by Grad School',
                             chartArea: { width: '100%' },
                             hAxis: {
-                                title: 'Count',
+                                title: 'Grad School',
                                 minValue: 0
                             },
                             vAxis: {
-                                title: 'Major'
+                                title: 'Count'
                             }
                         },
                     }}
                     // For tests
-                    rootProps={{ 'data-testid': '1' }}
+                    rootProps={{ 'data-testid': '2' }}
                 />
             </div>
         );
     }
 }
 
-export default AlumniByMajor;
+export default AlumniByGradSchool;
 
 // render(<AlumniByMajor />, document.getElementById("root"));
