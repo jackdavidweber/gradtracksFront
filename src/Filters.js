@@ -178,7 +178,7 @@ export default function MultipleSelect() {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-checkbox-label">Salary</InputLabel>
+        <InputLabel id="demo-mutiple-checkbox-label">Degree</InputLabel>
         <Select
           labelId="demo-mutiple-checkbox-label"
           id="demo-mutiple-checkbox"
@@ -217,6 +217,7 @@ export default function MultipleSelect() {
           ))}
         </Select>
       </FormControl>
+
     </div>
   );
 }

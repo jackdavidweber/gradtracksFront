@@ -20,10 +20,13 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Filters from './Filters';
+import FiltersMapping from './FiltersMapping'
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import FiltersLift from './FiltersLift'
+import Button from '@material-ui/core/Button';
+
 
 function Copyright() {
   return (
@@ -117,6 +120,12 @@ const useStyles = makeStyles(theme => ({
   fixedHeight: {
     height: 240,
   },
+  fixedWidth: {
+    width: 240,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-center',
+  }
 }));
 
 export default function Dashboard() {
@@ -178,7 +187,8 @@ export default function Dashboard() {
             {/* Filters */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Filters />
+                <FiltersMapping />
+                <Button className={classes.fixedWidth} align="center" variant="contained">Default</Button>
               </Paper>
             </Grid>
             {/* Chart */}
