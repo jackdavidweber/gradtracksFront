@@ -27,6 +27,59 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import FiltersLift from './FiltersLift'
 import Button from '@material-ui/core/Button';
+import AlumniByMajor from './AlumniByMajor';
+import AlumniByGradSchool from './AlumniByGradSchool';
+import AlumniByGradDegree from './AlumniByGradDegree';
+
+const degreeData = [
+  ["degree", "phd", "MA", "MS", "MFA", "MBA", "JD", "MD", "DDS"],
+  ['Computer Science', 1084, 688, 92, 1747, 1150, 1150, 1798, 688],
+  ['Mathematics', 194, 1088, 885, 1463, 1193, 995, 255, 177],
+  ['Physics', 1759, 1265, 355, 576, 614, 1380, 230, 1300],
+  ['Chemistry', 1494, 693, 419, 1206, 102, 1249, 113, 695],
+  ['Biology', 1327, 1855, 1909, 1197, 1105, 1296, 1326, 1998],
+  ['Economics', 1394, 1852, 877, 1408, 575, 1283, 1664, 9]
+]
+
+const majorData = [
+  ["Major", "Count"],
+  ["Africana Studies", 2937],
+  ["American Studies", 4885],
+  ["Anthropology", 4310],
+  ['Art History',	2400],
+  ['Asian American Studies', 4698],
+  ['Asian Studies', 915],
+  ['Biology', 902],
+  ['Chemistry', 757],
+  ['Chinese',	2691],
+  ['Classics', 2627],
+  ['Cognitive Science', 4877],
+  ['Computer Science', 1289],
+  ['Dance', 2942],
+  ['Economics', 1886],
+  ['English',	920],
+  ['French', 3059],
+  ['G & W Studies', 703],
+  ['Geology',	2651],
+  ['German Studies', 720]
+];
+
+const gradSchoolData = [
+  ["Grad School", "Count"],
+  ["Stanford University",	584],
+  ["UCLA", 670],
+  ["UC Berkeley",	675],
+  ["Carnegie Mellon University",	498],
+  ["MIT",	851],
+  ["Harvard University",	86],
+  ["Princeton University", 906],
+  ["Columbia University",	643],
+  ["Claremont Graduate University",	532],
+  ["Yale University", 104],
+  ["Rice University",	903],
+  ["University of Chicago", 189],
+  ["University of Pennsylvania", 426]
+];
 
 
 const put = {
@@ -311,24 +364,25 @@ export default function Dashboard() {
                 <Button className={classes.fixedWidth} align="center" variant="contained">Default</Button>
               </Paper>
             </Grid>
-            {/* Chart */}
+            {/* Alumni by major */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
+                <AlumniByMajor graphData = {majorData} />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
+            {/* Alumni by grad School */}
+            <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <AlumniByGradSchool graphData = {gradSchoolData} />
               </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
+            </Grid>      
+            {/* Alumni by grad Degree */}
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+                <AlumniByGradDegree graphData = {degreeData} />
               </Paper>
-            </Grid>
+            </Grid>  
+
           </Grid>
           <Box pt={4}>
             <Copyright />
