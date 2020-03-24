@@ -38,7 +38,7 @@ const pieOptions = {
   },
   fontName: "Roboto"
 };
-<<<<<<< HEAD
+
 // const seniorityData = [
 //     ["Industry", "Count"],
 //     ["Assistant", 2937],
@@ -50,19 +50,6 @@ const pieOptions = {
 //     ['Minor Executive', 902],
 //     ['Major Executive', 757]
 // ];
-=======
-const seniorityData = [
-    ["Industry", "Count"],
-    ["Assistant", 2937],
-    ["Associate", 4885],
-    ["Staff Member", 4310],
-    ['Senior Staff', 2400],
-    ['Manager', 4698],
-    ['Director', 915],
-    ['Minor Executive', 902],
-    ['Major Executive', 757]
-];
->>>>>>> 691347c901e62f038e37c7a33a7dbb5865a2c7a2
 class AlumniBySeniority extends React.Component {
   state = {
     chartImageURI: ""
@@ -72,11 +59,7 @@ class AlumniBySeniority extends React.Component {
       <div className="AlumniBySeniority">
         <Chart
           chartType="PieChart"
-<<<<<<< HEAD
           data={this.props.graphData}
-=======
-          data={seniorityData}
->>>>>>> 691347c901e62f038e37c7a33a7dbb5865a2c7a2
           options={pieOptions}
           graph_id="PieChart"
           width={"100%"}
@@ -88,11 +71,8 @@ class AlumniBySeniority extends React.Component {
   }
 }
 
-<<<<<<< HEAD
 // const rootElement = document.getElementById("root");
 // ReactDOM.render(<App />, rootElement);
 export default AlumniBySeniority;
-=======
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
->>>>>>> 691347c901e62f038e37c7a33a7dbb5865a2c7a2
+// ReactDOM.render(<App />, rootElement);

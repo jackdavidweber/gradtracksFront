@@ -30,6 +30,36 @@ import Button from '@material-ui/core/Button';
 import AlumniByMajor from './AlumniByMajor';
 import AlumniByGradSchool from './AlumniByGradSchool';
 import AlumniByGradDegree from './AlumniByGradDegree';
+import AlumniByIndustry from './AlumniByIndustry';
+import AlumniBySeniority from './AlumniBySeniority';
+
+const industryData = [
+  ["Industry", "Count"],
+  ["Technology", 2937],
+  ["Finance", 4885],
+  ["Academia", 4310],
+  ['Education', 2400],
+  ['Law', 4698],
+  ['Healthcare', 915],
+  ['Entertainment', 902],
+  ['Music', 757],
+  ['Public Administration', 2691],
+  ['Aerospace', 2627],
+  ['Pharmaceutical', 4877]
+];
+
+
+const seniorityData = [
+  ["Industry", "Count"],
+  ["Assistant", 2937],
+  ["Associate", 4885],
+  ["Staff Member", 4310],
+  ['Senior Staff', 2400],
+  ['Manager', 4698],
+  ['Director', 915],
+  ['Minor Executive', 902],
+  ['Major Executive', 757]
+];
 
 const degreeData = [
   ["degree", "phd", "MA", "MS", "MFA", "MBA", "JD", "MD", "DDS"],
@@ -382,7 +412,18 @@ export default function Dashboard() {
                 <AlumniByGradDegree graphData = {degreeData} />
               </Paper>
             </Grid>  
-
+            {/* Alumni by Industry */}
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+                <AlumniByIndustry graphData = {industryData} />
+              </Paper>
+            </Grid>  
+            {/* Alumni by grad Degree */}
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+                <AlumniBySeniority graphData = {seniorityData} />
+              </Paper>
+            </Grid>  
           </Grid>
           <Box pt={4}>
             <Copyright />
