@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -190,9 +191,57 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function emptyObjOfArrays(inp){
+  // copies input object to fields object
+  const fields = Object.keys(inp);
+
+  //sets all fields equal to an empty array
+  fields.map(function(key, index){
+    fields[key] = [];
+  });
+
+  return fields;
+}
+
+
+// function fetchGraphData(b){
+//   fetch('http://127.0.0.1:8080/api/Alumni', {
+//     method: 'POST',
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(b),
+
+//   });
+// }
+
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+ 
+  const [filters, setFilters] = useState({})
+
+  async function fetchData() {
+    const res = await fetch(`http://127.0.0.1:8080/api/Alumni`)
+    const data = await res.json()
+    setFilters(data)
+}
+
+  useEffect(() => { fetchData() }, [])
+
+
+  // create json with keys representing field names and values representing lists of fields for each fieldname
+  //For example put = {major: [Econ, CS, ...], industry: [Tech, Finance, ...],...}
+  console.log(filters)
+
+
+  // sets default data for the graphs as all of the filters being empty which is just
+  //interpreteded as all data by the database
+  //const [data, setData] = React.useState(fetchGraphData(emptyObjOfArrays(put)));
+
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -202,7 +251,12 @@ export default function Dashboard() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const applyFilters = vals => {
-    alert('applyFilters function')
+    //apply filters takes the filters from FiltersMapping and sends a POST request to Marcel's backend.
+    // it then uses the return of the POST request to update the state.
+    // setData(fetchGraphData(vals));
+    // console.log(data);
+
+    alert('filters have been applied')
   };
 
   return (

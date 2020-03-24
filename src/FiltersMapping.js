@@ -40,67 +40,6 @@ const MenuProps = {
     },
   },
 };
-   
-  //  const put = {
-  //    salary: [
-  //    '$35k - $50k',
-  //    '$50k - $75k',
-  //    '$75k - $90k',
-  //    '$90k - $110k',
-  //    '$110k - $150k',
-  //    '$150k - $200k',
-  //    '$200k',
-  //    ],
-  //    industry: [
-  //     'Finance',
-  //     'Business',
-  //     'Technology',
-  //     'Politics',
-  //     'Military',
-  //     'Education',
-  //     'Movie',
-  //     'Music',
-  //     'Medicine',
-  //     'Banking',
-  //     'Dance',
-  //     'Sports',
-  //    ],
-  //    yearsOut: [
-  //     '0-5 years',
-  //     '6-10 years',
-  //     '11-15 years',
-  //     '16-20 years',
-  //     '21-25 years',
-  //     '26-30 years',
-  //     '31-35 years',
-  //     '36-40 years',
-  //     '41-45 years',
-  //     '46-50 years',
-  //    ],
-  //    major: [
-  //     'African Studies',
-  //     'American Studies',
-  //     'Anthropology',
-  //     'Art',
-  //     'Art History',
-  //     'Asian American Studies',
-  //     'Asian Studies',
-  //     'Biology',
-  //     'Chemistry',
-  //    ],
-  //    names: [
-  //     'Oliver Hansen',
-  //     'Van Henry',
-  //     'April Tucker',
-  //     'Ralph Hubbard',
-  //     'Omar Alexander',
-  //     'Carlos Abbott',
-  //     'Miriam Wagner',
-  //     'Bradley Wilkerson',
-  //     'Virginia Andrews',
-  //     'Kelly Snyder',
-  //   ],
-  //  }
 
 function emptyObjOfArrays(inp){
   // copies input object to fields object
@@ -125,16 +64,15 @@ export default function MultipleSelect({input, buttonBehavior}) {
     if(Array.isArray(event.target.value)){
       updatedVal = event.target.value
     }
-    console.log(updatedVal)
+    //console.log(updatedVal)
     setValues({...values, [name]: updatedVal}); // this if statement is clearly not handling personChange very well
   };
   
   const fields = Object.keys(input);
-  console.log(fields);
+  //console.log(fields);
 
   function handleClick(){
-    //alert('you are applying the filters');
-    console.log(values);
+    //console.log(values);
     buttonBehavior(values);
   }
 
