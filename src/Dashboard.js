@@ -28,6 +28,68 @@ import FiltersLift from './FiltersLift'
 import Button from '@material-ui/core/Button';
 
 
+const put = {
+  salary: [
+  '$35k - $50k',
+  '$50k - $75k',
+  '$75k - $90k',
+  '$90k - $110k',
+  '$110k - $150k',
+  '$150k - $200k',
+  '$200k',
+  ],
+  industry: [
+   'Finance',
+   'Business',
+   'Technology',
+   'Politics',
+   'Military',
+   'Education',
+   'Movie',
+   'Music',
+   'Medicine',
+   'Banking',
+   'Dance',
+   'Sports',
+  ],
+  yearsOut: [
+   '0-5 years',
+   '6-10 years',
+   '11-15 years',
+   '16-20 years',
+   '21-25 years',
+   '26-30 years',
+   '31-35 years',
+   '36-40 years',
+   '41-45 years',
+   '46-50 years',
+  ],
+  major: [
+   'African Studies',
+   'American Studies',
+   'Anthropology',
+   'Art',
+   'Art History',
+   'Asian American Studies',
+   'Asian Studies',
+   'Biology',
+   'Chemistry',
+  ],
+  names: [
+   'Oliver Hansen',
+   'Van Henry',
+   'April Tucker',
+   'Ralph Hubbard',
+   'Omar Alexander',
+   'Carlos Abbott',
+   'Miriam Wagner',
+   'Bradley Wilkerson',
+   'Virginia Andrews',
+   'Kelly Snyder',
+ ],
+}
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -139,6 +201,10 @@ export default function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const applyFilters = vals => {
+    alert('applyFilters function')
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -187,7 +253,7 @@ export default function Dashboard() {
             {/* Filters */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <FiltersMapping />
+                <FiltersMapping input={put} buttonBehavior= {applyFilters} />
                 <Button className={classes.fixedWidth} align="center" variant="contained">Default</Button>
               </Paper>
             </Grid>
