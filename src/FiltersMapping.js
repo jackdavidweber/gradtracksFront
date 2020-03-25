@@ -25,9 +25,9 @@ const useStyles = makeStyles(theme => ({
   chip: {
     margin: 2,
   },
-  // noLabel: {
-  //   marginTop: theme.spacing(3),
-  // },
+  noLabel: {
+    marginTop: theme.spacing(3),
+  },
 }));
 
 const ITEM_HEIGHT = 48;
@@ -43,22 +43,19 @@ const MenuProps = {
 
 function emptyObjOfArrays(inp){
   // copies input object to fields object
-  console.log("eOA0", inp);
   const fields = Object.keys(inp);
-  console.log("eOA1", fields);
+
   //sets all fields equal to an empty array
   fields.map(function(key, index){
     fields[key] = [];
   });
-  console.log("eOA2", fields);
+
   return fields;
 }
 
 export default function MultipleSelect({input, buttonBehavior}) {
   const classes = useStyles();
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
-  console.log("MS", input);
   const [values, setValues] = React.useState(emptyObjOfArrays(input));
 
   const handleChange = name => (event, newValue) => {
@@ -70,24 +67,13 @@ export default function MultipleSelect({input, buttonBehavior}) {
     setValues({...values, [name]: updatedVal}); // this if statement is clearly not handling personChange very well
   };
   
-  delete input.GraduationYears
-
   const fields = Object.keys(input);
   console.log(fields);
 
   function handleClick(){
-    //console.log(values);
     buttonBehavior(values);
   }
   console.log("values:", values);
-  // fields.map(field => (
-  //   input[field].map(major => (
-  //     console.log(major.toString())
-  //   )
-
-  //     )
-  //   // console.log(field, input[field])
-  // ))
 
   return (
     <div>
@@ -104,10 +90,10 @@ export default function MultipleSelect({input, buttonBehavior}) {
           renderValue={selected => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {input[field].map(major => (
-            <MenuItem key={major} value={major}>
-              <Checkbox checked={values[field].indexOf(major) > -1} />
-              <ListItemText primary={major} />
+          {input[field].map(label => (
+            <MenuItem key={label} value={label}>
+              <Checkbox checked={values[field].indexOf(label) > -1} />
+              <ListItemText primary={label} />
             </MenuItem>
           ))}
         </Select>

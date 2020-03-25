@@ -341,8 +341,8 @@ export default function Dashboard() {
     // it then uses the return of the POST request to update the state.
     // setData(fetchGraphData(vals));
     // console.log(data);
-
-    alert('filters have been applied')
+    console.log("applyFilters", JSON.stringify(vals));
+    alert('filters have been applied');
   };
 
   return (
