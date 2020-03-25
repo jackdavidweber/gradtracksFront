@@ -316,7 +316,10 @@ export default function Dashboard() {
 
   // create json with keys representing field names and values representing lists of fields for each fieldname
   //For example put = {major: [Econ, CS, ...], industry: [Tech, Finance, ...],...}
+  console.log("***")
   console.log(filters)
+  console.log(put)
+  console.log("***")
 
 
   // sets default data for the graphs as all of the filters being empty which is just
@@ -390,7 +393,7 @@ export default function Dashboard() {
             {/* Filters */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <FiltersMapping input={put} buttonBehavior= {applyFilters} />
+                {Object.keys(filters).length > 0 && <FiltersMapping input={filters} buttonBehavior= {applyFilters} />}
                 <Button className={classes.fixedWidth} align="center" variant="contained">Default</Button>
               </Paper>
             </Grid>

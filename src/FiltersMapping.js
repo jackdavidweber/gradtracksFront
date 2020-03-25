@@ -43,13 +43,14 @@ const MenuProps = {
 
 function emptyObjOfArrays(inp){
   // copies input object to fields object
+  console.log("eOA0", inp);
   const fields = Object.keys(inp);
-
+  console.log("eOA1", fields);
   //sets all fields equal to an empty array
   fields.map(function(key, index){
     fields[key] = [];
   });
-
+  console.log("eOA2", fields);
   return fields;
 }
 
@@ -57,6 +58,7 @@ export default function MultipleSelect({input, buttonBehavior}) {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
+  console.log("MS", input);
   const [values, setValues] = React.useState(emptyObjOfArrays(input));
 
   const handleChange = name => (event, newValue) => {
@@ -68,13 +70,24 @@ export default function MultipleSelect({input, buttonBehavior}) {
     setValues({...values, [name]: updatedVal}); // this if statement is clearly not handling personChange very well
   };
   
+  delete input.GraduationYears
+
   const fields = Object.keys(input);
-  //console.log(fields);
+  console.log(fields);
 
   function handleClick(){
     //console.log(values);
     buttonBehavior(values);
   }
+  console.log("values:", values);
+  // fields.map(field => (
+  //   input[field].map(major => (
+  //     console.log(major.toString())
+  //   )
+
+  //     )
+  //   // console.log(field, input[field])
+  // ))
 
   return (
     <div>
