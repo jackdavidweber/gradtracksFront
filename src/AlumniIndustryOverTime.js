@@ -43,7 +43,7 @@ const industryOverTimeData =[
 
 // To pass input into class, pass input as props.graphData
 // As an example refer to AlumniByGradSchool class
-class AlumniIndustryOverTime1 extends React.Component {
+class AlumniIndustryOverTime extends React.Component {
     render() {
         return (
             <div className="AlumniIndustryOverTime1">
