@@ -49,6 +49,83 @@ const industryData = [
 ];
 
 
+const samplePostJSON = {
+  // Grad Degree field Name and number of alumni who have gotten each degree type within that degree field
+  AlumniByGradDegree: [
+    ["degree", "phd", "MA", "MS", "MFA", "MBA", "JD", "MD", "DDS"],
+    ['Computer Science', 1084, 688, 92, 1747, 1150, 1150, 1798, 688],
+    ['Mathematics', 194, 1088, 885, 1463, 1193, 995, 255, 177],
+    ['Physics', 1759, 1265, 355, 576, 614, 1380, 230, 1300],
+    ['Chemistry', 1494, 693, 419, 1206, 102, 1249, 113, 695],
+    ['Biology', 1327, 1855, 1909, 1197, 1105, 1296, 1326, 1998],
+    ['Economics', 1394, 1852, 877, 1408, 575, 1283, 1664, 9]
+  ],
+  // Grad School Name and Number of alumni that attend this grad school
+  AlumniByGradSchool: [
+    ["Grad School", "Count"],
+    ["Stanford University",	584],
+    ["UCLA", 670],
+    ["UC Berkeley",	675],
+    ["Carnegie Mellon University",	498],
+    ["MIT",	851],
+    ["Harvard University",	86],
+    ["Princeton University", 906],
+    ["Columbia University",	643],
+    ["Claremont Graduate University",	532],
+    ["Yale University", 104],
+    ["Rice University",	903],
+    ["University of Chicago", 189],
+    ["University of Pennsylvania", 426]
+  ],
+  AlumniByIndustry: [
+    ["Industry", "Count"],
+    ["Technology", 2937],
+    ["Finance", 4885],
+    ["Academia", 4310],
+    ['Education', 2400],
+    ['Law', 4698],
+    ['Healthcare', 915],
+    ['Entertainment', 902],
+    ['Music', 757],
+    ['Public Administration', 2691],
+    ['Aerospace', 2627],
+    ['Pharmaceutical', 4877]
+  ],
+  AlumniByMajor: [
+    ["Major", "Count"],
+    ["Africana Studies", 2937],
+    ["American Studies", 4885],
+    ["Anthropology", 4310],
+    ['Art History',	2400],
+    ['Asian American Studies', 4698],
+    ['Asian Studies', 915],
+    ['Biology', 902],
+    ['Chemistry', 757],
+    ['Chinese',	2691],
+    ['Classics', 2627],
+    ['Cognitive Science', 4877],
+    ['Computer Science', 1289],
+    ['Dance', 2942],
+    ['Economics', 1886],
+    ['English',	920],
+    ['French', 3059],
+    ['G & W Studies', 703],
+    ['Geology',	2651],
+    ['German Studies', 720]
+  ],
+  AlumniBySeniority: [
+    ["Industry", "Count"],
+    ["Assistant", 2937],
+    ["Associate", 4885],
+    ["Staff Member", 4310],
+    ['Senior Staff', 2400],
+    ['Manager', 4698],
+    ['Director', 915],
+    ['Minor Executive', 902],
+    ['Major Executive', 757]
+  ]
+}
+
 const seniorityData = [
   ["Industry", "Count"],
   ["Assistant", 2937],
@@ -174,6 +251,9 @@ const put = {
 }
 
 
+
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -287,24 +367,26 @@ function emptyObjOfArrays(inp){
 }
 
 
-// function fetchGraphData(b){
-//   fetch('http://127.0.0.1:8080/api/Alumni', {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(b),
+function fetchGraphData(b){
+  fetch('http://127.0.0.1:8080/api/Alumni', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(b),
 
-//   });
-// }
+  });
+}
 
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
  
   const [filters, setFilters] = useState({})
+  const [graphData, setGraphData] = useState({})
 
+  // GET REQUEST
   async function fetchData() {
     const res = await fetch(`http://127.0.0.1:8080/api/Alumni`)
     const data = await res.json()
@@ -313,6 +395,20 @@ export default function Dashboard() {
 
   useEffect(() => { fetchData() }, [])
 
+  // POST REQUEST
+  async function postRequest(postBody){
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(postBody)
+    };
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts', requestOptions);
+    const data = await response.json();
+    setGraphData(data);
+    //this.setState({ postId: data.id });
+    console.log("graphData", graphData);
+    console.log(postBody);
+  }
 
   // create json with keys representing field names and values representing lists of fields for each fieldname
   //For example put = {major: [Econ, CS, ...], industry: [Tech, Finance, ...],...}
@@ -342,6 +438,12 @@ export default function Dashboard() {
     // setData(fetchGraphData(vals));
     // console.log(data);
     console.log("applyFilters", JSON.stringify(vals));
+
+    
+
+
+    var apiOutput = postRequest({ title: 'React POST Request Example' })
+    console.log("apiOutput", apiOutput)
     alert('filters have been applied');
   };
 
