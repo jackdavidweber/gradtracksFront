@@ -394,13 +394,19 @@ export default function Dashboard() {
   const [graphData, setGraphData] = useState({})
 
   // GET REQUEST
-  async function fetchData() {
+  async function getRequest() {
     const res = await fetch(`http://127.0.0.1:8080/api/Alumni`)
     const data = await res.json()
     setFilters(data)
 }
 
-  useEffect(() => { fetchData() }, [])
+  useEffect(() => { 
+    // When the page loads, GET request and POST request are called to populate the page initially
+    getRequest() 
+    
+    // POST request is called with no body which asks the backend for all data
+    postRequest({})
+  }, [])
 
   // POST REQUEST
   async function postRequest(postBody){
