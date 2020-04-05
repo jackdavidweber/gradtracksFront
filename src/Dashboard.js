@@ -367,18 +367,6 @@ function emptyObjOfArrays(inp){
 }
 
 
-function fetchGraphData(b){
-  fetch('http://127.0.0.1:8080/api/Alumni', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(b),
-
-  });
-}
-
 function removeUnnecessaryPropertiesFromPostBody(o){
   // backend does not handle properties with empty arrays associated with them. 
   // This function makes sure that all properties being passed to the backend have values that are non empty arrays
@@ -469,7 +457,7 @@ export default function Dashboard() {
     var apiOutput = postRequest(removeUnnecessaryPropertiesFromPostBody(vals))
     
     // console.log("apiOutput", apiOutput);
-    alert('filters have been applied');
+    alert('filters have been applied \n' + JSON.stringify(removeUnnecessaryPropertiesFromPostBody(vals)));
   };
 
   return (
@@ -527,13 +515,16 @@ export default function Dashboard() {
             {/* Alumni by major */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <AlumniByMajor graphData = {majorData} />
+                {/* TODO: Fix Naming inconsistency- AlumniByMajors vs AlumniByMajor */}
+                {/* <AlumniByMajor graphData = {majorData} /> */}
+                {graphData["AlumiByMajors"] && <AlumniByMajor graphData = {graphData["AlumiByMajors"]}/>}
               </Paper>
             </Grid>
             {/* Alumni by grad School */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <AlumniByGradSchool graphData = {gradSchoolData} />
+                {graphData["AlumiByGradSchools"] && <AlumniByGradDegree graphData = {graphData["AlumiByGradSchools"]}/>}
+                {/* <AlumniByGradSchool graphData = {gradSchoolData} /> */}
               </Paper>
             </Grid>      
             {/* Alumni by grad Degree */}
@@ -546,13 +537,17 @@ export default function Dashboard() {
             {/* Alumni by Industry */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <AlumniByIndustry graphData = {industryData} />
+                {/* TODO: Fix naming inconsistency with AlumniByIndustries vs AlumniByIndustry */}
+              {graphData["AlumiByIndustries"] && <AlumniByIndustry graphData = {graphData["AlumiByIndustries"]}/>}
+              {/* <AlumniByIndustry graphData = {industryData} /> */}
               </Paper>
             </Grid>  
             {/* Alumni by grad Degree */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <AlumniBySeniority graphData = {seniorityData} />
+                {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
+                {graphData["AlumiBySeniorities"] && <AlumniBySeniority graphData = {graphData["AlumiBySeniorities"]}/>}
+                {/* <AlumniBySeniority graphData = {seniorityData} /> */}
               </Paper>
             </Grid>  
           </Grid>
