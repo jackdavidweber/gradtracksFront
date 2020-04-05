@@ -379,6 +379,25 @@ function fetchGraphData(b){
   });
 }
 
+function removeUnnecessaryPropertiesFromPostBody(o){
+  // backend does not handle properties with empty arrays associated with them. 
+  // This function makes sure that all properties being passed to the backend have values that are non empty arrays
+
+  var newObj = {};
+
+  for (var k in o){
+    var v = o[k];
+
+    // if value is an array of length greater than 0
+    if (Array.isArray(v) && v.length > 0){
+      newObj[k]=v
+    }
+
+  }
+
+  return newObj;
+}
+
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -397,25 +416,28 @@ export default function Dashboard() {
 
   // POST REQUEST
   async function postRequest(postBody){
+    // used https://jasonwatmore.com/post/2020/02/01/react-fetch-http-post-request-examples "POST request using fetch with async/await"
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(postBody)
     };
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts', requestOptions);
+    const response = await fetch('http://127.0.0.1:8080/api/Alumni', requestOptions);
     const data = await response.json();
     setGraphData(data);
     //this.setState({ postId: data.id });
-    console.log("graphData", graphData);
-    console.log(postBody);
+    // console.log("graphData", graphData);
+    // console.log(postBody);
   }
 
   // create json with keys representing field names and values representing lists of fields for each fieldname
   //For example put = {major: [Econ, CS, ...], industry: [Tech, Finance, ...],...}
-  console.log("***")
-  console.log(filters)
-  console.log(put)
-  console.log("***")
+  // console.log("***")
+  // console.log(filters)
+  // console.log(put)
+  // console.log("***")
+    
 
 
   // sets default data for the graphs as all of the filters being empty which is just
@@ -425,10 +447,12 @@ export default function Dashboard() {
 
 
   const handleDrawerOpen = () => {
+    console.log(graphData);
     setOpen(true);
   };
   const handleDrawerClose = () => {
-    setOpen(false);
+    console.log(graphData);
+        setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -437,13 +461,14 @@ export default function Dashboard() {
     // it then uses the return of the POST request to update the state.
     // setData(fetchGraphData(vals));
     // console.log(data);
-    console.log("applyFilters", JSON.stringify(vals));
+    // console.log("applyFilters", JSON.stringify(removeUnnecessaryPropertiesFromPostBody(vals)));
 
     
 
 
-    var apiOutput = postRequest({ title: 'React POST Request Example' })
-    console.log("apiOutput", apiOutput)
+    var apiOutput = postRequest(removeUnnecessaryPropertiesFromPostBody(vals))
+    
+    // console.log("apiOutput", apiOutput);
     alert('filters have been applied');
   };
 
@@ -514,6 +539,7 @@ export default function Dashboard() {
             {/* Alumni by grad Degree */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
+                {/* {graphData["AlumniByGradDegrees"] && <AlumniByGradDegree graphData = {graphData["AlumniByGradDegrees"]} />} */}
                 <AlumniByGradDegree graphData = {degreeData} />
               </Paper>
             </Grid>  

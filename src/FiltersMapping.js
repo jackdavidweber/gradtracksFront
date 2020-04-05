@@ -68,12 +68,12 @@ export default function MultipleSelect({input, buttonBehavior}) {
   };
   
   const fields = Object.keys(input);
-  console.log(fields);
+  // console.log(fields);
 
   function handleClick(){
     buttonBehavior(values);
   }
-  console.log("values:", values);
+  // console.log("values:", values);
 
   return (
     <div>
