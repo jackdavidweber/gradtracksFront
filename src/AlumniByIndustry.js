@@ -28,7 +28,7 @@ import * as React from "react";
                      chartType="ColumnChart"
                      loader={<div>Loading Chart</div>}
                      data={this.props.graphData}
-                     data={industryData}
+                    //  data={industryData}
                      options={{
                          // Material design options
                          chart: {

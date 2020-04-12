@@ -386,12 +386,17 @@ function removeUnnecessaryPropertiesFromPostBody(o){
   return newObj;
 }
 
+const useForceUpdate = () => useState()[1];
+
+
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
  
   const [filters, setFilters] = useState({})
   const [graphData, setGraphData] = useState({})
+
+  const forceUpdate = useForceUpdate()
 
   // GET REQUEST
   async function getRequest() {
@@ -464,6 +469,7 @@ export default function Dashboard() {
     
     // console.log("apiOutput", apiOutput);
     alert('filters have been applied \n' + JSON.stringify(removeUnnecessaryPropertiesFromPostBody(vals)));
+    forceUpdate();
   };
 
   return (
@@ -515,12 +521,11 @@ export default function Dashboard() {
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 {Object.keys(filters).length > 0 && <FiltersMapping input={filters} buttonBehavior= {applyFilters} />}
-                <Button className={classes.fixedWidth} align="center" variant="contained">Default</Button>
               </Paper>
             </Grid>
             {/* Alumni by major */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.paper}>
                 {/* TODO: Fix Naming inconsistency- AlumniByMajors vs AlumniByMajor */}
                 {/* <AlumniByMajor graphData = {majorData} /> */}
                 {graphData["AlumiByMajors"] && <AlumniByMajor graphData = {graphData["AlumiByMajors"]}/>}
@@ -528,21 +533,21 @@ export default function Dashboard() {
             </Grid>
             {/* Alumni by grad School */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                {graphData["AlumiByGradSchools"] && <AlumniByGradDegree graphData = {graphData["AlumiByGradSchools"]}/>}
+              <Paper className={classes.paper}>
+                {graphData["AlumiByGradSchools"] && <AlumniByGradSchool graphData = {graphData["AlumiByGradSchools"]}/>}
                 {/* <AlumniByGradSchool graphData = {gradSchoolData} /> */}
               </Paper>
             </Grid>      
             {/* Alumni by grad Degree */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                {/* {graphData["AlumniByGradDegrees"] && <AlumniByGradDegree graphData = {graphData["AlumniByGradDegrees"]} />} */}
-                <AlumniByGradDegree graphData = {degreeData} />
+              <Paper className={classes.paper}>
+                {graphData["AlumniByGradDegrees"] && <AlumniByGradDegree graphData = {graphData["AlumniByGradDegrees"]} />}
+                {/* <AlumniByGradDegree graphData = {degreeData} /> */}
               </Paper>
             </Grid>  
             {/* Alumni by Industry */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.paper}>
                 {/* TODO: Fix naming inconsistency with AlumniByIndustries vs AlumniByIndustry */}
               {graphData["AlumiByIndustries"] && <AlumniByIndustry graphData = {graphData["AlumiByIndustries"]}/>}
               {/* <AlumniByIndustry graphData = {industryData} /> */}
@@ -550,7 +555,7 @@ export default function Dashboard() {
             </Grid>  
             {/* Alumni by grad Degree */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.paper}>
                 {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
                 {graphData["AlumiBySeniorities"] && <AlumniBySeniority graphData = {graphData["AlumiBySeniorities"]}/>}
                 {/* <AlumniBySeniority graphData = {seniorityData} /> */}
