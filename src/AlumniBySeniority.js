@@ -51,8 +51,8 @@ class AlumniBySeniority extends React.Component {
           data={this.props.graphData}
           options={pieOptions}
           graph_id="PieChart"
-          width={"100%"}
-          height={"400px"}
+          width={this.props.width}
+          height={this.props.height}
           legend_toggle
         />
       </div>

@@ -9,8 +9,8 @@ import * as React from "react";
          return (
              <div className="AlumniByIndustry">
                  <Chart
-                     width={'1000px'}
-                     height={'400px'}
+                     width={this.props.width}
+                     height={this.props.height}
                      chartType="ColumnChart"
                      loader={<div>Loading Chart</div>}
                      data={this.props.graphData}

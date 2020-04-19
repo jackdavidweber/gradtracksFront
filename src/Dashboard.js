@@ -25,6 +25,7 @@ import AlumniByGradSchool from './AlumniByGradSchool';
 import AlumniByGradDegree from './AlumniByGradDegree';
 import AlumniByIndustry from './AlumniByIndustry';
 import AlumniBySeniority from './AlumniBySeniority';
+import AlumniTotalCount from './AlumnniTotalCount';
 
 
 function Copyright() {
@@ -41,6 +42,9 @@ function Copyright() {
 }
 
 const drawerWidth = 240;
+
+const graphHeight = '200px';
+const graphWidth = '500px'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -265,44 +269,49 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Filters */}
-            <Grid item xs={12}>
+            <Grid item xs={9}>
               <Paper className={classes.paper}>
                 {Object.keys(filters).length > 0 && <FiltersMapping input={filters} buttonBehavior= {applyFilters} />}
               </Paper>
             </Grid>
-            {/* Alumni by major */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={3}>
               <Paper className={classes.paper}>
-                {graphData["AlumiByMajors"] && <AlumniByMajor graphData = {graphData["AlumiByMajors"]}/>}
+                <AlumniTotalCount count={graphData['AlumniTotalCount']}/>
+              </Paper>
+            </Grid>
+            {/* Alumni by major */}
+            <Grid item sm={12} md = {6}>
+              <Paper className={classes.paper}>
+                {graphData["AlumiByMajors"] && <AlumniByMajor height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByMajors"]}/>}
               </Paper>
             </Grid>
             {/* Alumni by grad School */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item sm={12} md = {6}>
               <Paper className={classes.paper}>
-                {graphData["AlumiByGradSchools"] && <AlumniByGradSchool graphData = {graphData["AlumiByGradSchools"]}/>}
+                {graphData["AlumiByGradSchools"] && <AlumniByGradSchool height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByGradSchools"]}/>}
                 {/* <AlumniByGradSchool graphData = {gradSchoolData} /> */}
               </Paper>
             </Grid>      
             {/* Alumni by grad Degree */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item sm={12} md = {6}>
               <Paper className={classes.paper}>
-                {graphData["AlumniByGradDegrees"] && <AlumniByGradDegree graphData = {graphData["AlumniByGradDegrees"]} />}
+                {graphData["AlumniByGradDegrees"] && <AlumniByGradDegree height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumniByGradDegrees"]} />}
                 {/* <AlumniByGradDegree graphData = {degreeData} /> */}
               </Paper>
             </Grid>  
             {/* Alumni by Industry */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item sm={12} md = {6}>
               <Paper className={classes.paper}>
                 {/* TODO: Fix naming inconsistency with AlumniByIndustries vs AlumniByIndustry */}
-              {graphData["AlumiByIndustries"] && <AlumniByIndustry graphData = {graphData["AlumiByIndustries"]}/>}
+              {graphData["AlumiByIndustries"] && <AlumniByIndustry height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByIndustries"]}/>}
               {/* <AlumniByIndustry graphData = {industryData} /> */}
               </Paper>
             </Grid>  
             {/* Alumni by grad Degree */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item sm={12} md = {6}>
               <Paper className={classes.paper}>
                 {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
-                {graphData["AlumiBySeniorities"] && <AlumniBySeniority graphData = {graphData["AlumiBySeniorities"]}/>}
+                {graphData["AlumiBySeniorities"] && <AlumniBySeniority height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiBySeniorities"]}/>}
               </Paper>
             </Grid>  
           </Grid>
