@@ -39,17 +39,6 @@ const pieOptions = {
   fontName: "Roboto"
 };
 
-// const seniorityData = [
-//     ["Industry", "Count"],
-//     ["Assistant", 2937],
-//     ["Associate", 4885],
-//     ["Staff Member", 4310],
-//     ['Senior Staff', 2400],
-//     ['Manager', 4698],
-//     ['Director', 915],
-//     ['Minor Executive', 902],
-//     ['Major Executive', 757]
-// ];
 class AlumniBySeniority extends React.Component {
   state = {
     chartImageURI: ""

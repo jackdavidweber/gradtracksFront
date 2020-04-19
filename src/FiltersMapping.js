@@ -63,17 +63,14 @@ export default function MultipleSelect({input, buttonBehavior}) {
     if(Array.isArray(event.target.value)){
       updatedVal = event.target.value
     }
-    //console.log(updatedVal)
     setValues({...values, [name]: updatedVal}); // this if statement is clearly not handling personChange very well
   };
   
   const fields = Object.keys(input);
-  // console.log(fields);
 
   function handleClick(){
     buttonBehavior(values);
   }
-  // console.log("values:", values);
 
   return (
     <div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,238 +19,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import Filters from './Filters';
 import FiltersMapping from './FiltersMapping'
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
-import FiltersLift from './FiltersLift'
-import Button from '@material-ui/core/Button';
 import AlumniByMajor from './AlumniByMajor';
 import AlumniByGradSchool from './AlumniByGradSchool';
 import AlumniByGradDegree from './AlumniByGradDegree';
 import AlumniByIndustry from './AlumniByIndustry';
 import AlumniBySeniority from './AlumniBySeniority';
-
-const industryData = [
-  ["Industry", "Count"],
-  ["Technology", 2937],
-  ["Finance", 4885],
-  ["Academia", 4310],
-  ['Education', 2400],
-  ['Law', 4698],
-  ['Healthcare', 915],
-  ['Entertainment', 902],
-  ['Music', 757],
-  ['Public Administration', 2691],
-  ['Aerospace', 2627],
-  ['Pharmaceutical', 4877]
-];
-
-
-const samplePostJSON = {
-  // Grad Degree field Name and number of alumni who have gotten each degree type within that degree field
-  AlumniByGradDegree: [
-    ["degree", "phd", "MA", "MS", "MFA", "MBA", "JD", "MD", "DDS"],
-    ['Computer Science', 1084, 688, 92, 1747, 1150, 1150, 1798, 688],
-    ['Mathematics', 194, 1088, 885, 1463, 1193, 995, 255, 177],
-    ['Physics', 1759, 1265, 355, 576, 614, 1380, 230, 1300],
-    ['Chemistry', 1494, 693, 419, 1206, 102, 1249, 113, 695],
-    ['Biology', 1327, 1855, 1909, 1197, 1105, 1296, 1326, 1998],
-    ['Economics', 1394, 1852, 877, 1408, 575, 1283, 1664, 9]
-  ],
-  // Grad School Name and Number of alumni that attend this grad school
-  AlumniByGradSchool: [
-    ["Grad School", "Count"],
-    ["Stanford University",	584],
-    ["UCLA", 670],
-    ["UC Berkeley",	675],
-    ["Carnegie Mellon University",	498],
-    ["MIT",	851],
-    ["Harvard University",	86],
-    ["Princeton University", 906],
-    ["Columbia University",	643],
-    ["Claremont Graduate University",	532],
-    ["Yale University", 104],
-    ["Rice University",	903],
-    ["University of Chicago", 189],
-    ["University of Pennsylvania", 426]
-  ],
-  AlumniByIndustry: [
-    ["Industry", "Count"],
-    ["Technology", 2937],
-    ["Finance", 4885],
-    ["Academia", 4310],
-    ['Education', 2400],
-    ['Law', 4698],
-    ['Healthcare', 915],
-    ['Entertainment', 902],
-    ['Music', 757],
-    ['Public Administration', 2691],
-    ['Aerospace', 2627],
-    ['Pharmaceutical', 4877]
-  ],
-  AlumniByMajor: [
-    ["Major", "Count"],
-    ["Africana Studies", 2937],
-    ["American Studies", 4885],
-    ["Anthropology", 4310],
-    ['Art History',	2400],
-    ['Asian American Studies', 4698],
-    ['Asian Studies', 915],
-    ['Biology', 902],
-    ['Chemistry', 757],
-    ['Chinese',	2691],
-    ['Classics', 2627],
-    ['Cognitive Science', 4877],
-    ['Computer Science', 1289],
-    ['Dance', 2942],
-    ['Economics', 1886],
-    ['English',	920],
-    ['French', 3059],
-    ['G & W Studies', 703],
-    ['Geology',	2651],
-    ['German Studies', 720]
-  ],
-  AlumniBySeniority: [
-    ["Industry", "Count"],
-    ["Assistant", 2937],
-    ["Associate", 4885],
-    ["Staff Member", 4310],
-    ['Senior Staff', 2400],
-    ['Manager', 4698],
-    ['Director', 915],
-    ['Minor Executive', 902],
-    ['Major Executive', 757]
-  ]
-}
-
-const seniorityData = [
-  ["Industry", "Count"],
-  ["Assistant", 2937],
-  ["Associate", 4885],
-  ["Staff Member", 4310],
-  ['Senior Staff', 2400],
-  ['Manager', 4698],
-  ['Director', 915],
-  ['Minor Executive', 902],
-  ['Major Executive', 757]
-];
-
-const degreeData = [
-  ["degree", "phd", "MA", "MS", "MFA", "MBA", "JD", "MD", "DDS"],
-  ['Computer Science', 1084, 688, 92, 1747, 1150, 1150, 1798, 688],
-  ['Mathematics', 194, 1088, 885, 1463, 1193, 995, 255, 177],
-  ['Physics', 1759, 1265, 355, 576, 614, 1380, 230, 1300],
-  ['Chemistry', 1494, 693, 419, 1206, 102, 1249, 113, 695],
-  ['Biology', 1327, 1855, 1909, 1197, 1105, 1296, 1326, 1998],
-  ['Economics', 1394, 1852, 877, 1408, 575, 1283, 1664, 9]
-]
-
-const majorData = [
-  ["Major", "Count"],
-  ["Africana Studies", 2937],
-  ["American Studies", 4885],
-  ["Anthropology", 4310],
-  ['Art History',	2400],
-  ['Asian American Studies', 4698],
-  ['Asian Studies', 915],
-  ['Biology', 902],
-  ['Chemistry', 757],
-  ['Chinese',	2691],
-  ['Classics', 2627],
-  ['Cognitive Science', 4877],
-  ['Computer Science', 1289],
-  ['Dance', 2942],
-  ['Economics', 1886],
-  ['English',	920],
-  ['French', 3059],
-  ['G & W Studies', 703],
-  ['Geology',	2651],
-  ['German Studies', 720]
-];
-
-const gradSchoolData = [
-  ["Grad School", "Count"],
-  ["Stanford University",	584],
-  ["UCLA", 670],
-  ["UC Berkeley",	675],
-  ["Carnegie Mellon University",	498],
-  ["MIT",	851],
-  ["Harvard University",	86],
-  ["Princeton University", 906],
-  ["Columbia University",	643],
-  ["Claremont Graduate University",	532],
-  ["Yale University", 104],
-  ["Rice University",	903],
-  ["University of Chicago", 189],
-  ["University of Pennsylvania", 426]
-];
-
-
-const put = {
-  salary: [
-  '$35k - $50k',
-  '$50k - $75k',
-  '$75k - $90k',
-  '$90k - $110k',
-  '$110k - $150k',
-  '$150k - $200k',
-  '$200k',
-  ],
-  industry: [
-   'Finance',
-   'Business',
-   'Technology',
-   'Politics',
-   'Military',
-   'Education',
-   'Movie',
-   'Music',
-   'Medicine',
-   'Banking',
-   'Dance',
-   'Sports',
-  ],
-  yearsOut: [
-   '0-5 years',
-   '6-10 years',
-   '11-15 years',
-   '16-20 years',
-   '21-25 years',
-   '26-30 years',
-   '31-35 years',
-   '36-40 years',
-   '41-45 years',
-   '46-50 years',
-  ],
-  major: [
-   'African Studies',
-   'American Studies',
-   'Anthropology',
-   'Art',
-   'Art History',
-   'Asian American Studies',
-   'Asian Studies',
-   'Biology',
-   'Chemistry',
-  ],
-  names: [
-   'Oliver Hansen',
-   'Van Henry',
-   'April Tucker',
-   'Ralph Hubbard',
-   'Omar Alexander',
-   'Carlos Abbott',
-   'Miriam Wagner',
-   'Bradley Wilkerson',
-   'Virginia Andrews',
-   'Kelly Snyder',
- ],
-}
-
-
-
 
 
 function Copyright() {
@@ -425,23 +198,7 @@ export default function Dashboard() {
     const response = await fetch('http://127.0.0.1:8080/api/Alumni', requestOptions);
     const data = await response.json();
     setGraphData(data);
-    //this.setState({ postId: data.id });
-    // console.log("graphData", graphData);
-    // console.log(postBody);
   }
-
-  // create json with keys representing field names and values representing lists of fields for each fieldname
-  //For example put = {major: [Econ, CS, ...], industry: [Tech, Finance, ...],...}
-  // console.log("***")
-  // console.log(filters)
-  // console.log(put)
-  // console.log("***")
-    
-
-
-  // sets default data for the graphs as all of the filters being empty which is just
-  //interpreteded as all data by the database
-  //const [data, setData] = React.useState(fetchGraphData(emptyObjOfArrays(put)));
 
 
 
@@ -456,19 +213,9 @@ export default function Dashboard() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const applyFilters = vals => {
-    //apply filters takes the filters from FiltersMapping and sends a POST request to Marcel's backend.
-    // it then uses the return of the POST request to update the state.
-    // setData(fetchGraphData(vals));
-    // console.log(data);
-    // console.log("applyFilters", JSON.stringify(removeUnnecessaryPropertiesFromPostBody(vals)));
-
-    
-
 
     var apiOutput = postRequest(removeUnnecessaryPropertiesFromPostBody(vals))
-    
-    // console.log("apiOutput", apiOutput);
-    alert('filters have been applied \n' + JSON.stringify(removeUnnecessaryPropertiesFromPostBody(vals)));
+    //alert('filters have been applied \n' + JSON.stringify(removeUnnecessaryPropertiesFromPostBody(vals)));
     forceUpdate();
   };
 
@@ -526,8 +273,6 @@ export default function Dashboard() {
             {/* Alumni by major */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={classes.paper}>
-                {/* TODO: Fix Naming inconsistency- AlumniByMajors vs AlumniByMajor */}
-                {/* <AlumniByMajor graphData = {majorData} /> */}
                 {graphData["AlumiByMajors"] && <AlumniByMajor graphData = {graphData["AlumiByMajors"]}/>}
               </Paper>
             </Grid>
@@ -558,7 +303,6 @@ export default function Dashboard() {
               <Paper className={classes.paper}>
                 {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
                 {graphData["AlumiBySeniorities"] && <AlumniBySeniority graphData = {graphData["AlumiBySeniorities"]}/>}
-                {/* <AlumniBySeniority graphData = {seniorityData} /> */}
               </Paper>
             </Grid>  
           </Grid>

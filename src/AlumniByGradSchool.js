@@ -1,25 +1,6 @@
 import * as React from "react";
 import { Chart } from "react-google-charts";
 
-// Example data to use for input:
-// const gradSchoolData = [
-//     ["Grad School", "Count"],
-//     ["Stanford University",	584],
-//     ["UCLA", 670],
-//     ["UC Berkeley",	675],
-//     ["Carnegie Mellon University",	498],
-//     ["MIT",	851],
-//     ["Harvard University",	86],
-//     ["Princeton University", 906],
-//     ["Columbia University",	643],
-//     ["Claremont Graduate University",	532],
-//     ["Yale University", 104],
-//     ["Rice University",	903],
-//     ["University of Chicago", 189],
-//     ["University of Pennsylvania", 426]
-// ];
-
-
 // To pass input into class, pass input as props.graphData
 // As an example:
 // ReactDOM.render(<AlumniByGradSchool graphData={gradSchoolData} />, document.getElementById('root'));
