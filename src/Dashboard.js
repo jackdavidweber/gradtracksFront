@@ -277,7 +277,7 @@ export default function Dashboard() {
                 </Typography>
                 <Typography variant="h5" align="center" color="textSecondary" paragraph>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.                </Typography>
-                <div className={classes.heroButtons}>
+                {/* <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>
                     <ScrollTo>
@@ -290,27 +290,33 @@ export default function Dashboard() {
                       {/* <Button variant="contained" color="primary">
                         Get Started
                       </Button> */}
-                    </Grid>
+                    {/*</Grid>
                     <Grid item>
                       <Button href= "https://github.com/jack1536/gradtracksFront" variant="outlined" color="primary">
                         Source Code
                       </Button>
                     </Grid>
                   </Grid>
-                </div>
+                </div> */}
+                
               </Container>
-            
+              <Grid container spacing={2} justify="center">
+                <Grid item>
+                {Object.keys(filters).length > 0 && <FiltersMapping input={filters} buttonBehavior= {applyFilters} />}
+                </Grid>
+                
+              </Grid>
             </div>
     <div className={classes.root}>
       
           <Grid container spacing={3}>
             {/* Filters */}
-            <Grid item xs={9}>
+            {/* <Grid item xs={9}>
               <Paper className={classes.paper}>
                 {Object.keys(filters).length > 0 && <FiltersMapping input={filters} buttonBehavior= {applyFilters} />}
               </Paper>
-            </Grid>
-            <Grid item xs={3}>
+            </Grid> */}
+            <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <AlumniTotalCount count={graphData['AlumniTotalCount']}/>
               </Paper>
