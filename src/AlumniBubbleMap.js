@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, CircleMarker, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-//import Geocode from "react-geocode";
+//import "leaflet/dist/leaflet.css";
+import Geocode from "react-geocode";
 
 // Geocode.fromAddress("Eiffel Tower").then(
 //   response => {
