@@ -254,7 +254,7 @@ export default function Dashboard() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             GradTracks
           </Typography>
-          <IconButton color="inherit">  
+          <IconButton color="inherit">
               <MenuIcon />
           </IconButton>
         </Toolbar>
