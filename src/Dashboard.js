@@ -26,6 +26,7 @@ import AlumniByGradDegree from './AlumniByGradDegree';
 import AlumniByIndustry from './AlumniByIndustry';
 import AlumniBySeniority from './AlumniBySeniority';
 import AlumniTotalCount from './AlumnniTotalCount';
+import AlumniBubbleMap from './AlumniBubbleMap';
 
 
 function Copyright() {
@@ -42,7 +43,20 @@ function Copyright() {
 }
 
 const drawerWidth = 240;
+const mapData = {
+    city: [
+      // [Longitude, Latitude]
+        { "name": "San Francisco", "coordinates": [-122.419418, 37.774929], "population": 50000 },
+        { "name": "Los Angeles", "coordinates": [-118.243683, 34.052235], "population": 500 },
+        { "name": "Austin", "coordinates": [-97.743057, 30.267153], "population": 200 },
+        { "name": "Seattle", "coordinates": [-122.332069, 47.606209], "population": 2000 },
+        { "name": "New York City", "coordinates": [-74.005974, 40.712776], "population": 7000 },
+        { "name": "Palo Alto", "coordinates": [-122.16067, 37.444786], "population": 250 },
+        { "name": "San Jose", "coordinates": [-121.887082, 37.337207], "population": 580 },
+        { "name": "Washingto D.C.", "coordinates": [-77.0312812, 38.8954381], "population": 3000 },
 
+    ],
+}
 const graphHeight = '200px';
 const graphWidth = '500px'
 
@@ -145,7 +159,7 @@ function emptyObjOfArrays(inp){
 
 
 function removeUnnecessaryPropertiesFromPostBody(o){
-  // backend does not handle properties with empty arrays associated with them. 
+  // backend does not handle properties with empty arrays associated with them.
   // This function makes sure that all properties being passed to the backend have values that are non empty arrays
 
   var newObj = {};
@@ -169,7 +183,7 @@ const useForceUpdate = () => useState()[1];
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
- 
+
   const [filters, setFilters] = useState({})
   const [graphData, setGraphData] = useState({})
 
@@ -182,10 +196,10 @@ export default function Dashboard() {
     setFilters(data)
 }
 
-  useEffect(() => { 
+  useEffect(() => {
     // When the page loads, GET request and POST request are called to populate the page initially
-    getRequest() 
-    
+    getRequest()
+
     // POST request is called with no body which asks the backend for all data
     postRequest({})
   }, [])
@@ -238,32 +252,14 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            GradTracks
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+          <IconButton color="inherit">  
+              <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
-      </Drawer>
+
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
@@ -291,14 +287,14 @@ export default function Dashboard() {
                 {graphData["AlumiByGradSchools"] && <AlumniByGradSchool height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByGradSchools"]}/>}
                 {/* <AlumniByGradSchool graphData = {gradSchoolData} /> */}
               </Paper>
-            </Grid>      
+            </Grid>
             {/* Alumni by grad Degree */}
             <Grid item sm={12} md = {6}>
               <Paper className={classes.paper}>
                 {graphData["AlumniByGradDegrees"] && <AlumniByGradDegree height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumniByGradDegrees"]} />}
                 {/* <AlumniByGradDegree graphData = {degreeData} /> */}
               </Paper>
-            </Grid>  
+            </Grid>
             {/* Alumni by Industry */}
             <Grid item sm={12} md = {6}>
               <Paper className={classes.paper}>
@@ -306,14 +302,19 @@ export default function Dashboard() {
               {graphData["AlumiByIndustries"] && <AlumniByIndustry height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByIndustries"]}/>}
               {/* <AlumniByIndustry graphData = {industryData} /> */}
               </Paper>
-            </Grid>  
+            </Grid>
             {/* Alumni by grad Degree */}
             <Grid item sm={12} md = {6}>
               <Paper className={classes.paper}>
                 {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
                 {graphData["AlumiBySeniorities"] && <AlumniBySeniority height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiBySeniorities"]}/>}
               </Paper>
-            </Grid>  
+            </Grid>
+            <Grid item sm={12} md = {6}>
+              <Paper className={classes.paper}>
+                {<AlumniBubbleMap graphData = {mapData} /> }
+              </Paper>
+            </Grid>
           </Grid>
           <Box pt={4}>
             <Copyright />
