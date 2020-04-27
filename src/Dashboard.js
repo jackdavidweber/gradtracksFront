@@ -26,20 +26,25 @@ import AlumniByGradDegree from './AlumniByGradDegree';
 import AlumniByIndustry from './AlumniByIndustry';
 import AlumniBySeniority from './AlumniBySeniority';
 import AlumniTotalCount from './AlumnniTotalCount';
+import Copyright from './Copyright'
+
+import { ScrollTo } from "react-scroll-to";
+import Button from '@material-ui/core/Button';
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const drawerWidth = 240;
 
@@ -59,6 +64,35 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+  },
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -224,49 +258,51 @@ export default function Dashboard() {
   };
 
   return (
+    <React.Fragment>
+    <CssBaseline />
+    <AppBar position="relative">
+      <Toolbar>
+        {/* <CameraIcon className={classes.icon} /> */}
+        <Typography variant="h6" color="inherit" noWrap>
+          GradTracks
+        </Typography>
+      </Toolbar>
+    </AppBar>
+    <main>
+    {/* Hero unit */}
+    <div className={classes.heroContent}>
+              <Container maxWidth="sm">
+                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                  GradTracks
+                </Typography>
+                <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.                </Typography>
+                <div className={classes.heroButtons}>
+                  <Grid container spacing={2} justify="center">
+                    <Grid item>
+                    <ScrollTo>
+                      {({ scrollTo }) => (
+                        <Button variant="contained" color="primary" onClick={() => scrollTo({ y: 600, smooth: true })}>
+                          Get Started
+                        </Button>
+                      )}
+                    </ScrollTo>
+                      {/* <Button variant="contained" color="primary">
+                        Get Started
+                      </Button> */}
+                    </Grid>
+                    <Grid item>
+                      <Button href= "https://github.com/jack1536/gradtracksFront" variant="outlined" color="primary">
+                        Source Code
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </div>
+              </Container>
+            
+            </div>
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+      
           <Grid container spacing={3}>
             {/* Filters */}
             <Grid item xs={9}>
@@ -315,11 +351,23 @@ export default function Dashboard() {
               </Paper>
             </Grid>  
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
+          {/* <Box pt={4}>
+          </Box> */}
+        {/* </Container> */}
+      {/* </main> */}
     </div>
+    </main>
+      {/* Footer */}
+      <footer className={classes.footer}>
+        <Typography variant="h6" align="center" gutterBottom>
+          College Spreadsheet Generator
+        </Typography>
+        {/* <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+          Click here to see the source code
+        </Typography> */}
+        <Copyright />
+      </footer>
+      {/* End footer */}
+    </React.Fragment>
   );
 }
