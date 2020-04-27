@@ -309,11 +309,7 @@ export default function Dashboard() {
                 {graphData["AlumiBySeniorities"] && <AlumniBySeniority height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiBySeniorities"]}/>}
               </Paper>
             </Grid>
-            <Grid item sm={12} md = {6}>
-              <Paper className={classes.paper}>
-                {<AlumniBubbleMap graphData = {mapData} /> }
-              </Paper>
-            </Grid>
+            
           </Grid>
           <Box pt={4}>
             <Copyright />
