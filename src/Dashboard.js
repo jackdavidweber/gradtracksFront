@@ -262,8 +262,7 @@ export default function Dashboard() {
 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
+        <Container maxWidth="lg" className={classes.container} <Grid container spacing={3}>
             {/* Filters */}
             <Grid item xs={9}>
               <Paper className={classes.paper}>
