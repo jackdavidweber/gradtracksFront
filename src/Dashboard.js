@@ -27,6 +27,7 @@ import AlumniByIndustry from './AlumniByIndustry';
 import AlumniBySeniority from './AlumniBySeniority';
 import AlumniTotalCount from './AlumnniTotalCount';
 import AlumniBubbleMap from './AlumniBubbleMap';
+import Cloud from './WordCloudByIndustry';
 import Copyright from './Copyright'
 
 import { ScrollTo } from "react-scroll-to";
@@ -396,6 +397,7 @@ export default function Dashboard() {
                 {graphData["AlumiBySeniorities"] && <AlumniBySeniority height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiBySeniorities"]}/>}
               </Paper>)}
             </Grid>
+            
             <Grid item sm={12} md = {6}>
               {false ? (<Paper className={classes.paper}>
                 <h2> Alumni map: Loading from database ... </h2>
@@ -403,6 +405,12 @@ export default function Dashboard() {
               <Paper className={classes.paper}>
                 {<AlumniBubbleMap graphData = {mapData} /> }
               </Paper>)}
+            </Grid>
+
+            <Grid item sm={12} md = {6}>
+              <Paper className={classes.paper}>
+                <Cloud/>
+              </Paper>
             </Grid>
 
           </Grid>

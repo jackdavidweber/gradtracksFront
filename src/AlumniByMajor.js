@@ -18,6 +18,10 @@ class AlumniByMajor extends React.Component {
                     loader={<div>Loading Chart</div>}
                     data={this.props.graphData}
                     options={{
+                        animation: {
+                            duration: 1000,
+                            easing: 'out',
+                        },
                         // Material design options
                         chart: {
                             title: 'Alumni by Major',

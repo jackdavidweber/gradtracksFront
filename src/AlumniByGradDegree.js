@@ -18,6 +18,10 @@ class AlumniByGradDegree extends React.Component {
                     loader={<div>Loading Chart</div>}
                     data={this.props.graphData}
                     options={{
+                        animation: {
+                            duration: 1000,
+                            easing: 'out',
+                        },
                         // Material design options
                         title: 'Alumni by Grad Degree and Type',
                         chartArea: { width: '100%' },

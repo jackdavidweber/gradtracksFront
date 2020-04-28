@@ -19,6 +19,10 @@ import * as React from "react";
                      data={this.props.graphData}
                     //  data={industryData}
                      options={{
+                        animation: {
+                            duration: 1000,
+                            easing: 'out',
+                        },
                          // Material design options
                          chart: {
                              title: 'Alumni by Industry',
