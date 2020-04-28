@@ -16,6 +16,10 @@ class AlumniByGradSchool extends React.Component {
                     data={this.props.graphData}
                     options={{
                         // Material design options
+                        animation: {
+                            duration: 1000,
+                            easing: 'out',
+                        },
                         chart: {
                             title: 'Alumni by Grad School',
                             chartArea: { width: '100%' },

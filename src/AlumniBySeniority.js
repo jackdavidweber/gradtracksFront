@@ -3,6 +3,10 @@ import ReactDOM from "react-dom";
 import Chart from "react-google-charts";
 
 const pieOptions = {
+  animation: {
+    duration: 1000,
+    easing: 'out',
+  },
   title: "Alumni by Seniority",
   pieHole: 0.6,
   slices: [
