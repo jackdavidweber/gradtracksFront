@@ -6,6 +6,9 @@ import { Chart } from "react-google-charts";
 // ReactDOM.render(<AlumniByGradSchool graphData={gradSchoolData} />, document.getElementById('root'));
 class AlumniByGradSchool extends React.Component {
     render() {
+        if (!this.props.graphData[1]) {
+            return (<h1> Not enough data to display </h1>);
+        }
         return (
             <div className="AlumniByGradSchool">
                 <Chart
@@ -14,6 +17,7 @@ class AlumniByGradSchool extends React.Component {
                     chartType="ColumnChart"
                     loader={<div>Loading Chart</div>}
                     data={this.props.graphData}
+
                     options={{
                         // Material design options
                         chart: {
@@ -33,6 +37,8 @@ class AlumniByGradSchool extends React.Component {
                 />
             </div>
         );
+    
+        
     }
 }
 

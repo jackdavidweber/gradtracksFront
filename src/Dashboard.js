@@ -331,50 +331,78 @@ export default function Dashboard() {
               </Paper>
             </Grid> */}
             <Grid item xs={12}>
+              {!graphData['AlumniTotalCount'] ? (
               <Paper className={classes.paper}>
-                <AlumniTotalCount count={graphData['AlumniTotalCount']}/>
-              </Paper>
+                <h1> Alumni count is not currently available </h1>
+              </Paper>): 
+              (
+                <Paper className={classes.paper}>
+                  <AlumniTotalCount count={graphData['AlumniTotalCount']} />
+                </Paper>
+                )
+              } 
+              
+              
             </Grid>
 
             {/* Alumni by major */}
             <Grid item sm={12} md = {6}>
+              {!graphData["AlumiByMajors"] ? (<Paper className={classes.paper}>
+                <h2> Alumni By Majors: Loading from database ... </h2>
+              </Paper>) : (
               <Paper className={classes.paper}>
                 {graphData["AlumiByMajors"] && <AlumniByMajor height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByMajors"]}/>}
               </Paper>
+              )}
             </Grid>
             {/* Alumni by grad School */}
             <Grid item sm={12} md = {6}>
+              {!graphData["AlumiByGradSchool"] ? (<Paper className={classes.paper}>
+                <h2> Alumni By Grad School: Loading from database ... </h2>
+              </Paper>) : (
               <Paper className={classes.paper}>
                 {graphData["AlumiByGradSchools"] && <AlumniByGradSchool height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByGradSchools"]}/>}
                 {/* <AlumniByGradSchool graphData = {gradSchoolData} /> */}
-              </Paper>
+              </Paper>)}
             </Grid>
             {/* Alumni by grad Degree */}
             <Grid item sm={12} md = {6}>
+              {!graphData["AlumniByGradDegrees"] ? (<Paper className={classes.paper}>
+                <h2> Alumni By Grad Degrees: Loading from database ... </h2>
+              </Paper>) : (
               <Paper className={classes.paper}>
                 {graphData["AlumniByGradDegrees"] && <AlumniByGradDegree height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumniByGradDegrees"]} />}
                 {/* <AlumniByGradDegree graphData = {degreeData} /> */}
-              </Paper>
+              </Paper>)}
             </Grid>
             {/* Alumni by Industry */}
             <Grid item sm={12} md = {6}>
+              {!graphData["AlumiByIndustries"] ? (<Paper className={classes.paper}>
+                <h2> Alumni By Industries: Loading from database ... </h2>
+              </Paper>) : (
               <Paper className={classes.paper}>
                 {/* TODO: Fix naming inconsistency with AlumniByIndustries vs AlumniByIndustry */}
               {graphData["AlumiByIndustries"] && <AlumniByIndustry height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByIndustries"]}/>}
               {/* <AlumniByIndustry graphData = {industryData} /> */}
-              </Paper>
+              </Paper>)}
             </Grid>
             {/* Alumni by grad Degree */}
             <Grid item sm={12} md = {6}>
+              {!graphData["AlumiBySeniorities"] ? (<Paper className={classes.paper}>
+                <h2> Alumni By Seniorities: Loading from database ... </h2>
+              </Paper>) : (
               <Paper className={classes.paper}>
                 {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
                 {graphData["AlumiBySeniorities"] && <AlumniBySeniority height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiBySeniorities"]}/>}
-              </Paper>
+              </Paper>)}
             </Grid>
             <Grid item sm={12} md = {6}>
+              {false ? (<Paper className={classes.paper}>
+                <h2> Alumni map: Loading from database ... </h2>
+              </Paper>) : (
               <Paper className={classes.paper}>
                 {<AlumniBubbleMap graphData = {mapData} /> }
-              </Paper>
+              </Paper>)}
             </Grid>
 
 

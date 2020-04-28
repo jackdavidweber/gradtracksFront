@@ -6,6 +6,9 @@ import * as React from "react";
 
  class AlumniByIndustry extends React.Component {
      render() {
+         if (!this.props.graphData[1]) {
+             return (<h1> Not enough data to display </h1>);
+         }
          return (
              <div className="AlumniByIndustry">
                  <Chart

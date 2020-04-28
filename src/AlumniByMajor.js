@@ -4,7 +4,11 @@ import { Chart } from "react-google-charts";
 // To pass input into class, pass input as props.graphData
 // example on how to do this in AlumniByGradSchool class
 class AlumniByMajor extends React.Component {
+    
     render() {
+        if (!this.props.graphData[1]) {
+            return (<h1> Not enough data to display </h1>);
+        }
         return (
             <div className="AlumniByMajor">
                 <Chart
