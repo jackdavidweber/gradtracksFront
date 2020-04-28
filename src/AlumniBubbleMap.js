@@ -48,10 +48,10 @@ class Testmap extends Component {
           style={{ height: "480px", width: "100%" }}
           zoom={1}
           center={[centerLat, centerLong]}
-          bounds={[
-            [-180 - bufferLat, -180 - bufferLong],
-            [180 + bufferLat, 180 + bufferLong]
-          ]}
+          // bounds={[
+          //   [-180 - bufferLat, -180 - bufferLong],
+          //   [180 + bufferLat, 180 + bufferLong]
+          // ]}
         >
           <TileLayer url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 

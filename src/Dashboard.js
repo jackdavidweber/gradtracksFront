@@ -335,6 +335,7 @@ export default function Dashboard() {
                 <AlumniTotalCount count={graphData['AlumniTotalCount']}/>
               </Paper>
             </Grid>
+
             {/* Alumni by major */}
             <Grid item sm={12} md = {6}>
               <Paper className={classes.paper}>
@@ -375,6 +376,7 @@ export default function Dashboard() {
                 {<AlumniBubbleMap graphData = {mapData} /> }
               </Paper>
             </Grid>
+
 
           </Grid>
           {/* <Box pt={4}>
