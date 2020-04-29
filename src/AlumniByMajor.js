@@ -7,6 +7,7 @@ class AlumniByMajor extends React.Component {
     render() {
         return (
             <div className="AlumniByMajor">
+              <h3 >Number of Alumni per Major</h3>
                 <Chart
                     width={this.props.width}
                     height={this.props.height}
@@ -16,6 +17,7 @@ class AlumniByMajor extends React.Component {
                     options={{
                         // Material design options
                         chart: {
+                            legend: 'none',
                             title: 'Alumni by Major',
                             chartArea: { width: '100%' },
                             hAxis: {
@@ -24,7 +26,8 @@ class AlumniByMajor extends React.Component {
                             },
                             vAxis: {
                                 title: 'Major'
-                            }
+                            },
+
                         },
                     }}
                     // For tests

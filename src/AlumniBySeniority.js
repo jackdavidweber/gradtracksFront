@@ -46,6 +46,7 @@ class AlumniBySeniority extends React.Component {
   render() {
     return (
       <div className="AlumniBySeniority">
+        <h3 >Percentage of Alumni by Seniority</h3>
         <Chart
           chartType="PieChart"
           data={this.props.graphData}

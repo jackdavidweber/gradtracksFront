@@ -8,6 +8,7 @@ class AlumniByGradSchool extends React.Component {
     render() {
         return (
             <div className="AlumniByGradSchool">
+              <h3 >Number of Alumni per Graduate School</h3>
                 <Chart
                     width={this.props.width}
                     height={this.props.height}

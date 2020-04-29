@@ -3,11 +3,12 @@ import { Chart } from "react-google-charts";
 
 
 // To pass input into class, pass input as props.graphData
-// As an example refer to AlumniByGradSchool class 
+// As an example refer to AlumniByGradSchool class
 class AlumniByGradDegree extends React.Component {
     render() {
         return (
             <div className="AlumniByGradDegree">
+              <h3 >Number of Alumni per Graduate Degree</h3>
                 <Chart
                     width={this.props.width}
                     height={this.props.height}

@@ -337,8 +337,9 @@ export default function Dashboard() {
             </Grid>
 
             {/* Alumni by major */}
-            <Grid item sm={12} md = {6}>
-              <Paper className={classes.paper}>
+            <Grid item sm={12} md = {6} >
+              <Paper className={classes.paper} alignItems="center"
+    justify="center">
                 {graphData["AlumiByMajors"] && <AlumniByMajor height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByMajors"]}/>}
               </Paper>
             </Grid>

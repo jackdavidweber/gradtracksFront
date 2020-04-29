@@ -8,6 +8,7 @@ import * as React from "react";
      render() {
          return (
              <div className="AlumniByIndustry">
+               <h3 >Number of Alumni per Industry</h3>
                  <Chart
                      width={this.props.width}
                      height={this.props.height}
