@@ -6,6 +6,9 @@ import { Chart } from "react-google-charts";
 // As an example refer to AlumniByGradSchool class 
 class AlumniByGradDegree extends React.Component {
     render() {
+        if (!this.props.graphData[1]) {
+            return (<h1> Not enough data to display </h1>);
+        }
         return (
             <div className="AlumniByGradDegree">
                 <Chart
