@@ -23,7 +23,7 @@ class AlumniByGradDegree extends React.Component {
                             easing: 'out',
                         },
                         // Material design options
-                        title: 'Alumni by Grad Degree and Type',
+                        // title: 'Alumni by Grad Degree and Type',
                         chartArea: { width: '100%' },
                         isStacked: true,
                         hAxis: {

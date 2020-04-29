@@ -10,7 +10,8 @@ export default function ResponsiveFontSizes({count}) {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Typography variant="h3">Number of Alumni that Match Above Filter: {count}</Typography>
+        <Typography align= 'center' variant="h5">Number of Alumni that Match Above Filter:</Typography>
+        <Typography align= 'center' variant="h3">{count}</Typography>
       </ThemeProvider>
     </div>
   );

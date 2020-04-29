@@ -29,6 +29,7 @@ import AlumniTotalCount from './AlumnniTotalCount';
 import AlumniBubbleMap from './AlumniBubbleMap';
 import Cloud from './WordCloudByIndustry';
 import Copyright from './Copyright'
+import words from './words';
 
 import { ScrollTo } from "react-scroll-to";
 import Button from '@material-ui/core/Button';
@@ -167,6 +168,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
+    flexWrap: 'wrap',
     flexDirection: 'column',
   },
   fixedHeight: {
@@ -259,7 +261,7 @@ export default function Dashboard() {
     console.log(graphData);
     setOpen(true);
   };
-  const handleDrawerClose = () => {
+  const handleDrawerClose = () => { 
     console.log(graphData);
         setOpen(false);
   };
@@ -323,7 +325,7 @@ export default function Dashboard() {
               </Grid>
             </div>
     <div className={classes.root}>
-
+          <break/>
           <Grid container spacing={3}>
             {/* Filters */}
             {/* <Grid item xs={9}>
@@ -376,17 +378,7 @@ export default function Dashboard() {
                 {/* <AlumniByGradDegree graphData = {degreeData} /> */}
               </Paper>)}
             </Grid>
-            {/* Alumni by Industry */}
-            <Grid item sm={12} md = {6}>
-              {!graphData["AlumiByIndustries"] ? (<Paper className={classes.paper}>
-                <h2> Alumni By Industries: Loading from database ... </h2>
-              </Paper>) : (
-              <Paper className={classes.paper}>
-                {/* TODO: Fix naming inconsistency with AlumniByIndustries vs AlumniByIndustry */}
-              {graphData["AlumiByIndustries"] && <AlumniByIndustry height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByIndustries"]}/>}
-              {/* <AlumniByIndustry graphData = {industryData} /> */}
-              </Paper>)}
-            </Grid>
+
             {/* Alumni by grad Degree */}
             <Grid item sm={12} md = {6}>
               {!graphData["AlumiBySeniorities"] ? (<Paper className={classes.paper}>
@@ -396,8 +388,7 @@ export default function Dashboard() {
                 {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
                 {graphData["AlumiBySeniorities"] && <AlumniBySeniority height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiBySeniorities"]}/>}
               </Paper>)}
-            </Grid>
-            
+            </Grid>            
             <Grid item sm={12} md = {6}>
               {false ? (<Paper className={classes.paper}>
                 <h2> Alumni map: Loading from database ... </h2>
@@ -408,10 +399,20 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item sm={12} md = {6}>
+            {/* Alumni by Industry */}
+            <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Cloud/>
+                {/* TODO: Fix naming inconsistency with AlumniByIndustries vs AlumniByIndustry */}
+                {graphData["AlumiByIndustries"] && <Cloud height={400} width = {graphWidth} graphData = {graphData["AlumiByIndustries"]}/>}
+                {/* <AlumniByIndustry graphData = {industryData} /> */}
               </Paper>
             </Grid>
+            {/* <Grid item sm={12} md = {6}>
+              <Paper className={classes.paper}>
+                {<AlumniBubbleMap graphData = {mapData} /> }
+              </Paper>
+            </Grid> */}
+
 
           </Grid>
           {/* <Box pt={4}>
