@@ -20,16 +20,18 @@ class AlumniByGradSchool extends React.Component {
                             duration: 1000,
                             easing: 'out',
                         },
+                        legend: 'none',
                         chart: {
-                            title: 'Alumni by Grad School',
+                            
+                            // title: 'Alumni by Grad School',
                             chartArea: { width: '100%' },
                             hAxis: {
                                 title: 'Grad School',
                                 minValue: 0
                             },
-                            vAxis: {
-                                title: 'Count'
-                            }
+                            // vAxis: {
+                            //     title: 'Count'
+                            // }
                         },
                     }}
                     // For tests

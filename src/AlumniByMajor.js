@@ -19,7 +19,9 @@ class AlumniByMajor extends React.Component {
                             easing: 'out',
                         },
                         // Material design options
+                        legend: 'none',
                         chart: {
+                            
                             title: 'Alumni by Major',
                             chartArea: { width: '100%' },
                             hAxis: {
