@@ -10,7 +10,7 @@ const options = {
   // enableOptimizations: true,
   // deterministic: false,
   fontFamily: 'impact',
-  // fontSizes: [30, 60],
+  fontSizes: [30, 60],
   fontStyle: 'normal',
   fontWeight: 'normal',
   padding: 1,

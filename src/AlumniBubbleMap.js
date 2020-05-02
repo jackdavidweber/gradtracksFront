@@ -43,7 +43,6 @@ class Testmap extends Component {
     var bufferLong = distanceLong * 0.15;
     return (
       <div>
-        <h3 style={{ textAlign: "center" }}>Alumni Distribution</h3>
         <Map
           style={{ height: "480px", width: "100%" }}
           zoom={1}
