@@ -228,7 +228,9 @@ export default function Dashboard() {
 
   // GET REQUEST
   async function getRequest() {
-    const res = await fetch(`http://127.0.0.1:8080/api/Alumni`)
+  const res = await fetch(`http://127.0.0.1:8080/api/Alumni`)
+  //const res = await fetch('https://localhost:44355/api/Alumni')
+
     const data = await res.json()
     setFilters(data)
 }
@@ -250,7 +252,9 @@ export default function Dashboard() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(postBody)
     };
-    const response = await fetch('http://127.0.0.1:8080/api/Alumni', requestOptions);
+  const response = await fetch('http://127.0.0.1:8080/api/Alumni', requestOptions);
+    //  const response = await fetch('https://localhost:44355/api/Alumni', requestOptions);
+
     const data = await response.json();
     setGraphData(data);
   }
@@ -261,7 +265,7 @@ export default function Dashboard() {
     console.log(graphData);
     setOpen(true);
   };
-  const handleDrawerClose = () => { 
+  const handleDrawerClose = () => {
     console.log(graphData);
         setOpen(false);
   };
@@ -319,7 +323,7 @@ export default function Dashboard() {
               </Container>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                {Object.keys(filters).length > 0 && <FiltersMapping input={filters} buttonBehavior= {applyFilters} />}
+              {Object.keys(filters).length > 0 && <FiltersMapping input={filters} buttonBehavior= {applyFilters} />}
                 </Grid>
 
               </Grid>
@@ -337,15 +341,13 @@ export default function Dashboard() {
               {!graphData['AlumniTotalCount'] ? (
               <Paper className={classes.paper}>
                 <h1> Alumni count is not currently available </h1>
-              </Paper>): 
+              </Paper>):
               (
                 <Paper className={classes.paper}>
                   <AlumniTotalCount count={graphData['AlumniTotalCount']} />
                 </Paper>
                 )
-              } 
-              
-              
+              }
             </Grid>
 
             {/* Alumni by major */}
@@ -388,7 +390,7 @@ export default function Dashboard() {
                 {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
                 {graphData["AlumiBySeniorities"] && <AlumniBySeniority height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiBySeniorities"]}/>}
               </Paper>)}
-            </Grid>            
+            </Grid>
             <Grid item sm={12} md = {6}>
               {false ? (<Paper className={classes.paper}>
                 <h2> Alumni map: Loading from database ... </h2>
@@ -412,8 +414,7 @@ export default function Dashboard() {
                 {<AlumniBubbleMap graphData = {mapData} /> }
               </Paper>
             </Grid> */}
-
-
+            </Grid>
           </Grid>
           {/* <Box pt={4}>
           </Box> */}
