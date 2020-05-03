@@ -47,11 +47,11 @@ class Testmap extends Component {
     }
     return (
       <div>
-        
+
         <Map
           style={{ height: "480px", width: "100%" }}
-          zoom={1}
-          center={[centerLat, centerLong]}
+          zoom={1.5}
+          center={[30, 0]}
           // bounds={[
           //   [-180 - bufferLat, -180 - bufferLong],
           //   [180 + bufferLat, 180 + bufferLong]
@@ -66,7 +66,7 @@ class Testmap extends Component {
               <CircleMarker
                 key={k}
                 center={[city["coordinates"][1], city["coordinates"][0]]}
-                radius={2*Math.log(city["population"]/10)}
+                radius={2*Math.log(city["population"]*10)}
                 fillOpacity={0.75}
                 stroke={false}
               />)
