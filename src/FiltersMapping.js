@@ -10,9 +10,16 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 
 const useStyles = makeStyles(theme => ({
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(3),
+    align: 'center'
+  },
   formControl: {
     // margin: theme.spacing(1),
     minWidth: 120,
@@ -27,6 +34,12 @@ const useStyles = makeStyles(theme => ({
   },
   noLabel: {
     marginTop: theme.spacing(3),
+  },
+  root: {
+    width: 250,
+    '& > * + *': {
+      marginTop: theme.spacing(3),
+    },
   },
 }));
 
@@ -54,51 +67,100 @@ function emptyObjOfArrays(inp){
 }
 
 export default function MultipleSelect({input, buttonBehavior}) {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [values, setValues] = React.useState(emptyObjOfArrays(input));
+    const classes = useStyles();
+    const theme = useTheme();
+    const [values, setValues] = React.useState(emptyObjOfArrays(input));
 
-  const handleChange = name => (event, newValue) => {
-    var updatedVal = newValue ? newValue : event.target.value
-    if(Array.isArray(event.target.value)){
-      updatedVal = event.target.value
+    const handleChange = name => (event, newValue) => {
+      var updatedVal = newValue ? newValue : event.target.value
+      if(Array.isArray(event.target.value)){
+        updatedVal = event.target.value
+      }
+      setValues({...values, [name]: updatedVal}); // this if statement is clearly not handling personChange very well
+    };
+
+    const fields = Object.keys(input);
+    const vals = Object.values(input);
+
+    function handleClick(){
+      buttonBehavior(values);
     }
-    setValues({...values, [name]: updatedVal}); // this if statement is clearly not handling personChange very well
-  };
-  
-  const fields = Object.keys(input);
-
-  function handleClick(){
-    buttonBehavior(values);
-  }
 
   return (
     <div>
-      {fields.map(field => (
-        <FormControl key={field} className={classes.formControl}>
-        <InputLabel id="demo-mutiple-checkbox-label">{field}</InputLabel>
-        <Select
-          labelId="demo-mutiple-checkbox-label"
-          id="demo-mutiple-checkbox"
-          multiple
-          value={values[field]}
-          onChange={handleChange(field)}
-          input={<Input />}
-          renderValue={selected => selected.join(', ')}
-          MenuProps={MenuProps}
-        >
-          {input[field].map(label => (
-            <MenuItem key={label} value={label}>
-              <Checkbox checked={values[field].indexOf(label) > -1} />
-              <ListItemText primary={label} />
-            </MenuItem>
-          ))}
-        </Select>
+    {fields.map(field=>(
+      <FormControl key={field} className={classes.formControl}>
+      <Autocomplete
+      className={classes.root}
+        multiple
+        id="tags-standard"
+        options={vals[fields.indexOf(field)]}
+        getOptionLabel={(option) => option}
+        onChange={handleChange(field)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="standard"
+            label= {field}
+            placeholder= {field}
+          />
+        )}
+      />
       </FormControl>
-      ))}
-      <Button onClick={handleClick} variant="contained" color="primary" className={classes.button}>
-        Apply Filters
-      </Button>
+    ))}
+    <Button onClick={handleClick} variant="contained" color="primary" className={classes.button} align="center">
+           Apply Filters
+    </Button>
     </div>
   );
 }
+
+// export default function MultipleSelect({input, buttonBehavior}) {
+//   const classes = useStyles();
+//   const theme = useTheme();
+//   const [values, setValues] = React.useState(emptyObjOfArrays(input));
+//
+//   const handleChange = name => (event, newValue) => {
+//     var updatedVal = newValue ? newValue : event.target.value
+//     if(Array.isArray(event.target.value)){
+//       updatedVal = event.target.value
+//     }
+//     setValues({...values, [name]: updatedVal}); // this if statement is clearly not handling personChange very well
+//   };
+//
+//   const fields = Object.keys(input);
+//
+//   function handleClick(){
+//     buttonBehavior(values);
+//   }
+//
+//   return (
+//     <div>
+//       {fields.map(field => (
+//         <FormControl key={field} className={classes.formControl}>
+//         <InputLabel id="demo-mutiple-checkbox-label">{field}</InputLabel>
+//         <Select
+//           labelId="demo-mutiple-checkbox-label"
+//           id="demo-mutiple-checkbox"
+//           multiple
+//           value={values[field]}
+//           onChange={handleChange(field)}
+//           input={<Input />}
+//           renderValue={selected => selected.join(', ')}
+//           MenuProps={MenuProps}
+//         >
+//           {input[field].map(label => (
+//             <MenuItem key={label} value={label}>
+//               <Checkbox checked={values[field].indexOf(label) > -1} />
+//               <ListItemText primary={label} />
+//             </MenuItem>
+//           ))}
+//         </Select>
+//       </FormControl>
+//       ))}
+//       <Button onClick={handleClick} variant="contained" color="primary" className={classes.button}>
+//         Apply Filters
+//       </Button>
+//     </div>
+//   );
+// }
