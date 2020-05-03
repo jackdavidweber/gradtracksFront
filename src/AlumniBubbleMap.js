@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, CircleMarker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import Popup from "reactjs-popup";
 //import Geocode from "react-geocode";
 
 // Geocode.fromAddress("Eiffel Tower").then(
@@ -51,13 +52,11 @@ class Testmap extends Component {
         <Map
           style={{ height: "480px", width: "100%" }}
           zoom={1.5}
+
           center={[30, 0]}
-          // bounds={[
-          //   [-180 - bufferLat, -180 - bufferLong],
-          //   [180 + bufferLat, 180 + bufferLong]
-          // ]}
+
         >
-          <TileLayer url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <TileLayer url="https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVoYWtzYWNoZGV2YSIsImEiOiJjaXF2YTNvYWIwMDA1ZmttZzBsNTM1NXV1In0.-SA7eLZOeeYkVPG7Jek2ug"/>
 
           {this.props.graphData.city.map((city, k) => {
 
@@ -67,9 +66,15 @@ class Testmap extends Component {
                 key={k}
                 center={[city["coordinates"][1], city["coordinates"][0]]}
                 radius={2*Math.log(city["population"]*10)}
+                onMouseOver={(e) => e.target.bindPopup('city: ' + city["name"] + "\n" + ' Number of Alumni: ' + city["population"]).openPopup()}
+                onMouseOut={(e) => e.target.closePopup()}
+                fillColor='blue'
                 fillOpacity={0.75}
                 stroke={false}
-              />)
+              >
+</CircleMarker>
+
+            )
           })
           }
         </Map>
