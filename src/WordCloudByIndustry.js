@@ -24,7 +24,9 @@ const options = {
 function Cloud({graphData, graphHeight, graphWidth}) {
   // const [iteration, setIteration] = useState(0)
   // const size=[600, 300]
-  
+  if (!graphData[1]) {
+    return (<h1> Not enough data to display </h1>);
+  }
   return (
     <div>
       <div style={{height: graphHeight, width: graphWidth}}>

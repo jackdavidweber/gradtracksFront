@@ -20,10 +20,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import FiltersMapping from './FiltersMapping'
-import AlumniByMajor from './AlumniByMajor';
-import AlumniByGradSchool from './AlumniByGradSchool';
-import AlumniByGradDegree from './AlumniByGradDegree';
-import AlumniByIndustry from './AlumniByIndustry';
 import AlumniBySeniority from './AlumniBySeniority';
 import AlumniTotalCount from './AlumnniTotalCount';
 import AlumniBubbleMap from './AlumniBubbleMap';
@@ -33,6 +29,7 @@ import words from './words';
 
 import { ScrollTo } from "react-scroll-to";
 import Button from '@material-ui/core/Button';
+import BarChart from './BarChart';
 
 
 
@@ -358,6 +355,8 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
     flexWrap: 'wrap',
     flexDirection: 'column',
+    alignItems:"center",
+    justifyContent:"center",
   },
   fixedHeight: {
     height: 240,
@@ -488,7 +487,8 @@ export default function Dashboard() {
                   GradTracks
                 </Typography>
                 <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.                </Typography>
+                  Built by and for students, GradTracks helps students to visualize alumni origins and outcomes. Happy Exploring!
+                </Typography>
                 {/* <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>
@@ -520,10 +520,18 @@ export default function Dashboard() {
               </Grid>
             </div>
     <div className={classes.root}>
-          <break/>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              {!graphData['AlumniTotalCount'] ? (
+
+
+            {!graphData["AlumniTotalCount"] && graphData["AlumniTotalCount"]!=0 ? (<Paper className={classes.paper}>
+                <h2> Alumni Total Count: Loading from database ... </h2>
+              </Paper>) : (
+              <Paper className={classes.paper}>
+                <AlumniTotalCount count={graphData['AlumniTotalCount']} />
+              </Paper>
+              )}
+              {/* {!graphData['AlumniTotalCount'] ? (
               <Paper className={classes.paper}>
                 <h1> Alumni count is not currently available </h1>
               </Paper>):
@@ -532,18 +540,23 @@ export default function Dashboard() {
                   <AlumniTotalCount count={graphData['AlumniTotalCount']} />
                 </Paper>
                 )
-              }
+              } */}
 
             </Grid>
 
             {/* Alumni by major */}
             <Grid item sm={12} md = {6}>
+
               {!graphData["AlumiByMajors"] ? (<Paper className={classes.paper}>
                 <h2> Alumni By Majors: Loading from database ... </h2>
               </Paper>) : (
               <Paper className={classes.paper}>
                 <Typography className={classes.graphTitle}> Alumni By Majors  </Typography>
-                {graphData["AlumiByMajors"] && <AlumniByMajor height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByMajors"]}/>}
+                {graphData["AlumiByMajors"] && 
+                <Box width={1} >
+                  <BarChart graphData = {graphData["AlumiByMajors"]}/>
+                </Box>
+                }
               </Paper>
               )}
             </Grid>
@@ -554,7 +567,11 @@ export default function Dashboard() {
               </Paper>) : (
               <Paper className={classes.paper}>
                 <Typography className={classes.graphTitle}> Alumni By Grad School  </Typography>
-                {graphData["AlumiByGradSchools"] && <AlumniByGradSchool height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiByGradSchools"]}/>}
+                {graphData["AlumiByGradSchools"] && 
+                <Box width={1} >
+                  <BarChart graphData = {graphData["AlumiByGradSchools"]}/>
+                </Box>
+                }
                 {/* <AlumniByGradSchool graphData = {gradSchoolData} /> */}
               </Paper>)}
             </Grid>
@@ -565,7 +582,11 @@ export default function Dashboard() {
               </Paper>) : (
               <Paper className={classes.paper}>
                 <Typography className={classes.graphTitle}> Alumni By Grad Degrees  </Typography>
-                {graphData["AlumniByGradDegrees"] && <AlumniByGradDegree height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumniByGradDegrees"]} />}
+                {graphData["AlumniByGradDegrees"] && 
+                <Box width={1}>
+                  <BarChart graphData = {graphData["AlumniByGradDegrees"]} />
+                </Box>
+                }
                 {/* <AlumniByGradDegree graphData = {degreeData} /> */}
               </Paper>)}
             </Grid>
@@ -578,17 +599,14 @@ export default function Dashboard() {
               <Paper className={classes.paper}>
                 {/* TODO: Fix naming differences of AlumiBySeniorities vs AlumniBySeniority */}
                 <Typography className={classes.graphTitle}> Alumni By Seniority  </Typography>
-                {graphData["AlumiBySeniorities"] && <AlumniBySeniority height= {graphHeight} width = {graphWidth} graphData = {graphData["AlumiBySeniorities"]}/>}
+                {graphData["AlumiBySeniorities"] && 
+                <Box width={1}>
+                  <AlumniBySeniority graphData = {graphData["AlumiBySeniorities"]}/>
+                </Box>
+                }
               </Paper>)}
             </Grid>
-            <Grid item sm={12} md = {6}>
-              {false ? (<Paper className={classes.paper}>
-                <h2> Alumni map: Loading from database ... </h2>
-              </Paper>) : (
-              <Paper className={classes.paper}>
-                {<AlumniBubbleMap graphData = {mapData} /> }
-              </Paper>)}
-            </Grid>
+
 
 
             {/* Alumni by Industry */}
@@ -599,7 +617,11 @@ export default function Dashboard() {
               <Paper className={classes.paper}>
                 {/* TODO: Fix naming inconsistency with AlumniByIndustries vs AlumniByIndustry */}
                 <Typography className={classes.graphTitle}> Alumni By Industry </Typography>
-                {graphData["AlumiByIndustries"] && <Cloud height={400} width = {graphWidth} graphData = {graphData["AlumiByIndustries"]}/>}
+                {graphData["AlumiByIndustries"] && 
+                <Box width={1}>
+                  <Cloud graphData = {graphData["AlumiByIndustries"]}/>
+                </Box>
+                }
                 {/* <AlumniByIndustry graphData = {industryData} /> */}
               </Paper>)}
             </Grid>
@@ -609,7 +631,11 @@ export default function Dashboard() {
               </Paper>) : (
               <Paper className={classes.paper}>
                 <Typography className={classes.graphTitle}> Alumni Map </Typography>
-                {graphData["AlumniByCities"] &&<AlumniBubbleMap graphData = {actualMapData} /> }
+                {graphData["AlumniByCities"] &&
+                <Box width={1}>
+                  <AlumniBubbleMap graphData = {actualMapData} /> 
+                </Box>
+                }
               </Paper>)}
             </Grid>
             {/* <Grid item sm={12} md = {6}>
@@ -618,11 +644,12 @@ export default function Dashboard() {
               </Paper>
             </Grid> */}
             </Grid>
-          </Grid>
+          </div>
+          
           {/* <Box pt={4}>
           </Box> */}
         {/* </Container> */}
-        </div>
+        
 
     </main>
       {/* Footer */}

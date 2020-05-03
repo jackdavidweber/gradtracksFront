@@ -12,8 +12,8 @@ class AlumniByMajor extends React.Component {
         return (
             <div className="AlumniByMajor">
                 <Chart
-                    width={this.props.width}
-                    height={this.props.height}
+                    // width={this.props.width}
+                    // height={this.props.height}
                     chartType="ColumnChart"
                     loader={<div>Loading Chart</div>}
                     data={this.props.graphData}

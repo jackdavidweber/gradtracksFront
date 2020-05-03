@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -69,7 +69,15 @@ function emptyObjOfArrays(inp){
 export default function MultipleSelect({input, buttonBehavior}) {
     const classes = useStyles();
     const theme = useTheme();
-    const [values, setValues] = React.useState(emptyObjOfArrays(input));
+    const [values, setValues] = useState(emptyObjOfArrays(input));
+    
+    // function updateAge(value) {
+    //   setValues(value);
+    // };
+  
+    useEffect(() => {
+      buttonBehavior(values);
+    }, [values]);
 
     const handleChange = name => (event, newValue) => {
       var updatedVal = newValue ? newValue : event.target.value
@@ -77,6 +85,7 @@ export default function MultipleSelect({input, buttonBehavior}) {
         updatedVal = event.target.value
       }
       setValues({...values, [name]: updatedVal}); // this if statement is clearly not handling personChange very well
+      //buttonBehavior(values);
     };
 
     const fields = Object.keys(input);
@@ -108,9 +117,9 @@ export default function MultipleSelect({input, buttonBehavior}) {
       />
       </FormControl>
     ))}
-    <Button onClick={handleClick} variant="contained" color="primary" className={classes.button} align="center">
+    {/* <Button onClick={handleClick} variant="contained" color="primary" className={classes.button} align="center">
            Apply Filters
-    </Button>
+    </Button> */}
     </div>
   );
 }

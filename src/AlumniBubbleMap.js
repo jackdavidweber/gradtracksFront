@@ -41,8 +41,13 @@ class Testmap extends Component {
     var centerLong = (-180 + 180) / 2;
     var distanceLong = 180 - (-180);
     var bufferLong = distanceLong * 0.15;
+
+    if (!this.props.graphData[1]) {
+      return (<h1> Not enough data to display </h1>);
+    }
     return (
       <div>
+        
         <Map
           style={{ height: "480px", width: "100%" }}
           zoom={1}

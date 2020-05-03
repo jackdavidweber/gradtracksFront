@@ -48,6 +48,9 @@ class AlumniBySeniority extends React.Component {
     chartImageURI: ""
   };
   render() {
+    if (!this.props.graphData[1]) {
+      return (<h1> Not enough data to display </h1>);
+  }
     return (
       <div className="AlumniBySeniority">
         <Chart
