@@ -66,7 +66,7 @@ class Testmap extends Component {
                 key={k}
                 center={[city["coordinates"][1], city["coordinates"][0]]}
                 radius={2*Math.log(city["population"]*10)}
-                onMouseOver={(e) => e.target.bindPopup('city: ' + city["name"] + "\n" + ' Number of Alumni: ' + city["population"]).openPopup()}
+                onMouseOver={(e) => e.target.bindPopup('city: ' + city["name"]  + ' ~ Number of Alumni: ' + city["population"]).openPopup()}
                 onMouseOut={(e) => e.target.closePopup()}
                 fillColor='blue'
                 fillOpacity={0.75}
