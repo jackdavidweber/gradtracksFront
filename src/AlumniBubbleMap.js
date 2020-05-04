@@ -43,9 +43,7 @@ class Testmap extends Component {
     var distanceLong = 180 - (-180);
     var bufferLong = distanceLong * 0.15;
 
-    if (!this.props.graphData[1]) {
-      return (<h1> Not enough data to display </h1>);
-    }
+
     return (
       <div>
 
@@ -56,9 +54,9 @@ class Testmap extends Component {
           center={[30, 0]}
 
         >
-          <TileLayer url="https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVoYWtzYWNoZGV2YSIsImEiOiJjaXF2YTNvYWIwMDA1ZmttZzBsNTM1NXV1In0.-SA7eLZOeeYkVPG7Jek2ug"/>
+          <TileLayer url="https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2llbG9uZyIsImEiOiJjazlyaW9jM2YwdjRlM25ycm1mMWg4Z2Q2In0.6AIVRml4_gMiYhfhnNN9FA"/>
 
-          {this.props.graphData.city.map((city, k) => {
+          {this.props.graphData.map((city, k) => {
 
             return (
 

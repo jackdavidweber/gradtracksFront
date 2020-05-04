@@ -63,7 +63,7 @@ const mapData = {
 }
 
 const actualMapData ={
-  "city": [
+  "AlumniByCities": [
     {
         "name": "Brushy Creek",
         "population": 2,
@@ -413,7 +413,6 @@ export default function Dashboard() {
 
   const [filters, setFilters] = useState({})
   const [graphData, setGraphData] = useState({})
-
   const forceUpdate = useForceUpdate()
 
   // GET REQUEST
@@ -566,7 +565,7 @@ export default function Dashboard() {
                 <h2> Alumni By Grad School: Loading from database ... </h2>
               </Paper>) : (
               <Paper className={classes.paper}>
-                <Typography className={classes.graphTitle}> Alumni By Grad School  </Typography>
+                <Typography className={classes.graphTitle}> Alumni By Graduate School  </Typography>
                 {graphData["AlumiByGradSchools"] &&
                 <Box width={1} >
                   <BarChart graphData = {graphData["AlumiByGradSchools"]}/>
@@ -581,7 +580,7 @@ export default function Dashboard() {
                 <h2> Alumni By Grad Degrees: Loading from database ... </h2>
               </Paper>) : (
               <Paper className={classes.paper}>
-                <Typography className={classes.graphTitle}> Alumni By Grad Degrees  </Typography>
+                <Typography className={classes.graphTitle}> Alumni By Graduate Degrees  </Typography>
                 {graphData["AlumniByGradDegrees"] &&
                 <Box width={1}>
                   <BarChart graphData = {graphData["AlumniByGradDegrees"]} />
@@ -623,16 +622,18 @@ export default function Dashboard() {
               </Paper>)}
             </Grid>
             <Grid item xs={12}>
-              {false ? (<Paper className={classes.paper}>
+              {!graphData["AlumniByCities"] ? (<Paper className={classes.paper}>
                 <h2> Alumni map: Loading from database ... </h2>
               </Paper>) : (
               <Paper className={classes.paper}>
                 <Typography className={classes.graphTitle}> Alumni Map </Typography>
                 {graphData["AlumniByCities"] &&
                 <Box width={1}>
-                  <AlumniBubbleMap graphData = {actualMapData} />
+
+                  <AlumniBubbleMap graphData = {graphData["AlumniByCities"]}/>
                 </Box>
                 }
+
               </Paper>)}
             </Grid>
             {/* <Grid item sm={12} md = {6}>
@@ -642,7 +643,7 @@ export default function Dashboard() {
             </Grid> */}
             </Grid>
 
-
+            </div>
           {/* <Box pt={4}>
           </Box> */}
         {/* </Container> */}
