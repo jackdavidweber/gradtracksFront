@@ -19,6 +19,7 @@
     "react-scripts": "3.4.0",
     "react-scroll-to": "^3.0.0-beta.6",
     "react-wordcloud": "^1.2.2",
+    "reactjs-popup": "^1.5.0",
     "recharts": "^2.0.0-beta.1"
   },
   "scripts": {
