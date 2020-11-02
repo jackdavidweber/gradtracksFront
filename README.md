@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+GradTracks is a database application built for a group project in Pomona College CS133. The goal is to create an interface where students can easily visualize alumni paths and outcomes. The following links are also associated with this project:
+* [Demo video](https://streamable.com/gf5evu) of a user using GradTracks.
+* [Final project report](https://production-gradescope-uploads.s3-us-west-2.amazonaws.com/uploads/pdf_attachment/file/26405346/GradTracks-FinalReport-2.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIGIENPBVZV37ZJPA%2F20201102%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20201102T015932Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=b3fc9a85c76f557bdebc6634834251f76fb013f04be70fab6782268df061a06a)
+* [Backend Repository](https://github.com/MarcelAlfonsoGarcia/GradTracks)
+
+The backend for Grad
 
 ## Available Scripts
 
